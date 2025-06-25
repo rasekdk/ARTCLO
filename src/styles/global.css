@@ -10,6 +10,9 @@
   --color-theme-gray-3: #B4B4B4;
   --color-theme-gray-2: #D8D8D8;
   --color-theme-gray-1: #EEEEEE;
+
+  --font-bebas: 'Bebas Neue', sans-serif;
+  --font-oswald: 'Oswald', sans-serif;
 }
 
 @font-face {
