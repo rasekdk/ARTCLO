@@ -6,24 +6,24 @@ module.exports = {
     node: true,
     es2021: true,
   },
-  parser: "astro-eslint-parser",
+  parser: 'astro-eslint-parser',
   parserOptions: {
-    parser: "@typescript-eslint/parser",
-    extraFileExtensions: [".astro"],
-    sourceType: "module",
+    parser: '@typescript-eslint/parser',
+    extraFileExtensions: ['.astro'],
+    sourceType: 'module',
     ecmaVersion: 2021,
   },
-  plugins: ["@typescript-eslint", "astro", "prettier"],
+  plugins: ['@typescript-eslint', 'astro', 'prettier'],
   extends: [
-    "eslint:recommended",
-    "plugin:astro/recommended", // reglas Astro
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended", // integra Prettier
-    "prettier", // desactiva reglas que choquen
+    'eslint:recommended',
+    'plugin:astro/recommended', // reglas Astro
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended', // integra Prettier
+    'prettier', // desactiva reglas que choquen
   ],
   overrides: [
     {
-      files: ["*.astro"],
+      files: ['*.astro'],
       rules: {
         // aquí puedes desactivar o ajustar reglas solo para .astro
       },
@@ -31,7 +31,7 @@ module.exports = {
   ],
   rules: {
     // fuerza estilo Prettier como error
-    "prettier/prettier": ["error"],
+    'prettier/prettier': ['error'],
     // tus ajustes extra…
   },
 };
