@@ -11,3 +11,17 @@
   --color-theme-gray-2: #D8D8D8;
   --color-theme-gray-1: #EEEEEE;
 }
+
+@font-face {
+  font-family: 'Bebas Neue';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/BebasNeue-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 100 900;
+  src: url('/fonts/Oswald-VariableFont_wght.ttf') format('truetype');
+}
