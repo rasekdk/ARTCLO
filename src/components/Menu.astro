@@ -1,0 +1,22 @@
+---
+import Link from '~/Atoms/Link.astro';
+import { COLORS } from '~/constants/Colors';
+import type { Menu } from '~/types/Menu';
+
+const { items, type = 'default' } = Astro.props as Menu;
+---
+
+<nav class="m-0 flex w-full flex-col gap-0 overflow-y-auto p-0">
+  {
+    items.map(({ url, id, label }) => (
+      <Link
+        url={url}
+        color={COLORS.WHITE}
+        class="text-[clamp(2rem,20cqw,6rem)] leading-none hover:text-[clamp(2.5rem,22cqw,6.5rem)]"
+        key={id}
+      >
+        {label}
+      </Link>
+    ))
+  }
+</nav>
