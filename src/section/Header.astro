@@ -1,0 +1,13 @@
+---
+import Vertical from '~/assets/logo/vertical.svg';
+import Menu from '~/components/Menu.astro';
+
+import MENU_ITEMS from '~/constants/MenuItems';
+---
+
+<header
+  class="container-parent text-theme-white bg-theme-black [container-type:inline-size] m-0 flex h-[100dvh] w-1/1 max-w-1/4 min-w-50 flex-col justify-between p-4 pr-0"
+>
+  <Vertical class="text-theme-main h-auto w-1/2 min-w-40" />
+  <Menu items={MENU_ITEMS} />
+</header>
