@@ -1,0 +1,24 @@
+---
+import Aside from '~/section/Aside.astro';
+import Header from '~/section/Header.astro';
+import Main from '~/section/Main.astro';
+
+import '~/styles/global.css';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Astro</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+
+  <body
+    class="flex flex-row m-0 p-0 w-[100dvw] h-[100dvh] overflow-hidden bg-theme-white text-theme-black font-oswald"
+  >
+    <Header />
+    <Main />
+    <Aside />
+  </body>
+</html>
