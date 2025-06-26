@@ -2,6 +2,8 @@
 import Aside from '~/section/Aside.astro';
 import Header from '~/section/Header.astro';
 import Main from '~/section/Main.astro';
+import { ClientRouter, fade, slide } from 'astro:transitions';
+import { headerTransition } from '~/transitions/HeaderTranstion';
 
 import '~/styles/global.css';
 ---
@@ -9,16 +11,20 @@ import '~/styles/global.css';
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
     <title>Astro</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <ClientRouter />
   </head>
 
   <body
-    class="flex flex-row m-0 p-0 w-[100dvw] h-[100dvh] overflow-hidden bg-theme-white text-theme-black font-oswald"
+    class="bg-theme-white text-theme-black font-oswald m-0 flex h-[100dvh] w-[100dvw] flex-row overflow-hidden p-0"
   >
-    <Header />
-    <Main />
-    <Aside />
+    <Header transition:animate={headerTransition} />
+    <Main transition:persist />
+    <Aside transition:persist />
   </body>
 </html>
