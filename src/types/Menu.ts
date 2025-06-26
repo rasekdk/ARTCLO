@@ -6,6 +6,6 @@ export interface MenuItem {
 
 export interface Menu {
   items: MenuItem[];
-  type: 'default' | 'burger'
+  type?: 'default' | 'burger';
+  currentPath?: string;
 }
-

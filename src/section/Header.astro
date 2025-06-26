@@ -1,15 +1,13 @@
 ---
 import Vertical from '~/assets/logo/vertical.svg';
-import Menu from '~/components/Menu.astro';
+import MenuIsland from '~/components/MenuIsland.tsx';
 
-import MENU_ITEMS from '~/constants/MenuItems';
-
-const currentPath = Astro.url.pathname;
+const { currentPath } = Astro.props;
 const isHome = currentPath === '/';
 ---
 
 <header
-  class="container-parent text-theme-white bg-theme-black [container-type:inline-size] m-0 flex h-[100dvh] w-full max-w-1/4 min-w-50 flex-col justify-between p-4 pr-0"
+  class="container-parent text-theme-white bg-theme-black [container-type:inline-size] m-0 flex h-[100dvh] w-full max-w-1/3 min-w-50 flex-col justify-between p-4 pr-0"
 >
   <a
     href="/"
@@ -23,5 +21,5 @@ const isHome = currentPath === '/';
   >
     <Vertical class="h-auto w-1/2 min-w-40" />
   </a>
-  <Menu items={MENU_ITEMS} />
+  <MenuIsland client:load />
 </header>

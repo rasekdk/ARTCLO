@@ -1,9 +1,5 @@
 ---
-import Aside from '~/section/Aside.astro';
-import Header from '~/section/Header.astro';
-import Main from '~/section/Main.astro';
-import { ClientRouter, fade, slide } from 'astro:transitions';
-import { headerTransition } from '~/transitions/HeaderTranstion';
+import { ClientRouter } from 'astro:transitions';
 
 import '~/styles/global.css';
 ---
@@ -23,7 +19,6 @@ import '~/styles/global.css';
   <body
     class="bg-theme-white text-theme-black font-oswald m-0 flex h-[100dvh] w-[100dvw] flex-row overflow-hidden p-0"
   >
-    <Header transition:animate={headerTransition} />
     <slot />
   </body>
 </html>
