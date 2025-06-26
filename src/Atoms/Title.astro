@@ -1,0 +1,39 @@
+---
+import type { FontsType } from '~/types/Fonts';
+import { FONTS } from '~/constants/Fonts';
+
+type Props = {
+  level?: 1 | 2 | 3 | 4 | 5 | 6;
+  class?: string;
+  title?: string;
+  fontFamily?: FontsType;
+  [key: string]: any;
+};
+
+const {
+  level = 1,
+  class: parentClasses = '',
+  title = 'Heading',
+  fontFamily = FONTS.BEBAS,
+  ...props
+} = Astro.props;
+
+const Tag = `h${level}` as keyof HTMLElementTagNameMap;
+---
+
+<Tag
+  {...props}
+  class="m-0 p-0 leading-[1em]"
+  class:list={{
+    [parentClasses]: Boolean(parentClasses),
+    [`font-${fontFamily}`]: true,
+  }}
+>
+  {title}
+</Tag>
+
+<style>
+  h1 {
+    font-size: clamp(2.5rem, 5vw, 5.5rem);
+  }
+</style>
