@@ -4,6 +4,8 @@ import Layout from '~/layouts/Layout.astro';
 import Aside from '~/section/Aside.astro';
 import Main from '~/section/Main.astro';
 import Title from '~/atoms/Title.astro';
+
+import { COLORS } from '~/constants/Colors';
 ---
 
 <Layout>
@@ -13,8 +15,8 @@ import Title from '~/atoms/Title.astro';
   <Aside
     class="m-0 w-1/3 bg-[url('/svg/topography.svg')] bg-cover bg-center bg-no-repeat p-0"
   >
-    <div class="fl flex h-1/1 w-full">
-      <Title title="Art & Clothing" level={3} />
+    <div class="flex h-1/1 w-full items-end p-4">
+      <Title title="Art & Clothing" level={3} color={COLORS.MAIN} />
     </div>
     <CartScroll scroll={false} />
   </Aside>

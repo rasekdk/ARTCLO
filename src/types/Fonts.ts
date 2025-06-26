@@ -1,1 +1,1 @@
-export type FontsType = 'bebas' | 'oswald';
+export type FontsType = 'anton' | 'oswald';

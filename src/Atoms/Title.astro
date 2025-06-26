@@ -1,22 +1,28 @@
 ---
 import type { FontsType } from '~/types/Fonts';
+import type { ColorsType } from '~/types/Colors';
+import { COLORS } from '~/constants/Colors';
 import { FONTS } from '~/constants/Fonts';
 
 type Props = {
-  level?: 1 | 2 | 3 | 4 | 5 | 6;
-  class?: string;
-  title?: string;
   fontFamily?: FontsType;
   fontSize?: string;
+  cassing?: 'uppercase' | 'lowercase' | 'capitalize' | 'normal-case';
+  class?: string;
+  color?: ColorsType;
+  level?: 1 | 2 | 3 | 4 | 5 | 6;
+  title?: string;
   [key: string]: any;
 };
 
 const {
-  level = 1,
-  class: parentClasses = '',
-  title = `Heading ${level}`,
-  fontFamily = FONTS.BEBAS,
+  fontFamily = FONTS.ANTON,
   fontSize,
+  cassing = 'uppercase',
+  class: parentClasses = '',
+  color = COLORS.MAIN,
+  level = 1,
+  title = `Heading ${level}`,
   ...props
 } = Astro.props;
 
@@ -30,12 +36,14 @@ const Tag = `h${level}` as keyof HTMLElementTagNameMap;
     [parentClasses]: Boolean(parentClasses),
     [`font-${fontFamily}`]: Boolean(fontFamily),
     [`text-[${fontSize}]`]: Boolean(fontSize),
+    [`text-theme-${color}`]: Boolean(color),
     'text-[clamp(2.5rem,5vw,5.5rem)]': !fontSize && level === 1,
     'text-[clamp(2rem,4vw,4.5rem)]': !fontSize && level === 2,
     'text-[clamp(1.75rem,3.5vw,3.5rem)]': !fontSize && level === 3,
     'text-[clamp(1.5rem,3vw,2.5rem)]': !fontSize && level === 4,
     'text-[clamp(1.25rem,2.5vw,2rem)]': !fontSize && level === 5,
     'text-[clamp(1rem,2vw,1.5rem)]': !fontSize && level === 6,
+    [cassing]: Boolean(cassing),
   }}
 >
   {title}

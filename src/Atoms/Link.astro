@@ -3,16 +3,18 @@ import { COLORS } from '~/constants/Colors';
 import type { ColorsType } from '~/types/Colors';
 
 type Props = {
-  url: string;
-  color?: ColorsType;
   class?: string;
+  cassing?: 'uppercase' | 'lowercase' | 'capitalize' | 'normal-case';
+  color?: ColorsType;
+  url: string;
   [key: string]: any;
 };
 
 const {
-  url,
-  color = COLORS.MAIN,
+  cassing = 'uppercase',
   class: parentClasses = '',
+  color = COLORS.MAIN,
+  url,
   ...props
 } = Astro.props;
 ---
@@ -20,8 +22,9 @@ const {
 <a
   href={url}
   {...props}
-  class="font-bebas hover:text-theme-main m-0 p-0 transition-all duration-300 ease-in-out"
+  class="font-anton hover:text-theme-main m-0 p-0 transition-all duration-300 ease-in-out"
   class:list={{
+    [cassing]: Boolean(cassing),
     [`text-theme-${color}`]: true,
     [parentClasses]: Boolean(parentClasses),
     'text-theme-main': Astro.url.pathname === url,

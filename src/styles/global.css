@@ -11,15 +11,15 @@
   --color-theme-gray-2: #d8d8d8;
   --color-theme-gray-1: #eeeeee;
 
-  --font-bebas: 'Bebas Neue', sans-serif;
+  --font-anton: 'Anton', sans-serif;
   --font-oswald: 'Oswald', sans-serif;
 }
 
 @font-face {
-  font-family: 'Bebas Neue';
+  font-family: 'Anton';
   font-style: normal;
   font-weight: 400;
-  src: url('/fonts/BebasNeue-Regular.ttf') format('truetype');
+  src: url('/fonts/Anton-Regular.ttf') format('truetype');
 }
 
 @font-face {
