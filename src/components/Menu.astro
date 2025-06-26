@@ -12,7 +12,11 @@ const { items, type = 'default' } = Astro.props as Menu;
       <Link
         url={url}
         color={COLORS.WHITE}
-        class="text-[clamp(2rem,20cqw,6rem)] leading-none hover:text-[clamp(2.5rem,22cqw,6.5rem)]"
+        class="leading-none hover:text-[clamp(2.5rem,22cqw,6.5rem)]"
+        class:list={{
+          'text-[clamp(2.5rem,22cqw,6.5rem)]': Astro.url.pathname == url,
+          'text-[clamp(2rem,20cqw,6rem)]': Astro.url.pathname !== url,
+        }}
         key={id}
       >
         {label}
