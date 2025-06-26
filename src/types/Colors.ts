@@ -1,0 +1,1 @@
+export type ColorsType = 'white' | 'black' | 'main';
