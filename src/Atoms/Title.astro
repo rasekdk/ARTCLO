@@ -7,14 +7,16 @@ type Props = {
   class?: string;
   title?: string;
   fontFamily?: FontsType;
+  fontSize?: string;
   [key: string]: any;
 };
 
 const {
   level = 1,
   class: parentClasses = '',
-  title = 'Heading',
+  title = `Heading ${level}`,
   fontFamily = FONTS.BEBAS,
+  fontSize,
   ...props
 } = Astro.props;
 
@@ -26,14 +28,15 @@ const Tag = `h${level}` as keyof HTMLElementTagNameMap;
   class="m-0 p-0 leading-[1em]"
   class:list={{
     [parentClasses]: Boolean(parentClasses),
-    [`font-${fontFamily}`]: true,
+    [`font-${fontFamily}`]: Boolean(fontFamily),
+    [`text-[${fontSize}]`]: Boolean(fontSize),
+    'text-[clamp(2.5rem,5vw,5.5rem)]': !fontSize && level === 1,
+    'text-[clamp(2rem,4vw,4.5rem)]': !fontSize && level === 2,
+    'text-[clamp(1.75rem,3.5vw,3.5rem)]': !fontSize && level === 3,
+    'text-[clamp(1.5rem,3vw,2.5rem)]': !fontSize && level === 4,
+    'text-[clamp(1.25rem,2.5vw,2rem)]': !fontSize && level === 5,
+    'text-[clamp(1rem,2vw,1.5rem)]': !fontSize && level === 6,
   }}
 >
   {title}
 </Tag>
-
-<style>
-  h1 {
-    font-size: clamp(2.5rem, 5vw, 5.5rem);
-  }
-</style>
