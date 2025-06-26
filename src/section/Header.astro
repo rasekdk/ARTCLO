@@ -3,11 +3,25 @@ import Vertical from '~/assets/logo/vertical.svg';
 import Menu from '~/components/Menu.astro';
 
 import MENU_ITEMS from '~/constants/MenuItems';
+
+const currentPath = Astro.url.pathname;
+const isHome = currentPath === '/';
 ---
 
 <header
   class="container-parent text-theme-white bg-theme-black [container-type:inline-size] m-0 flex h-[100dvh] w-1/1 max-w-1/4 min-w-50 flex-col justify-between p-4 pr-0"
 >
-  <Vertical class="text-theme-main h-auto w-1/2 min-w-40" />
+  <a
+    href="/"
+    class="block h-min w-min transition-all duration-300 ease-in-out"
+    class:list={{
+      'text-theme-main': isHome,
+      'hover:text-theme-white': isHome,
+      'text-theme-white': !isHome,
+      'hover:text-theme-main': !isHome,
+    }}
+  >
+    <Vertical class="h-auto w-1/2 min-w-40" />
+  </a>
   <Menu items={MENU_ITEMS} />
 </header>
