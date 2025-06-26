@@ -24,7 +24,6 @@ import '~/styles/global.css';
     class="bg-theme-white text-theme-black font-oswald m-0 flex h-[100dvh] w-[100dvw] flex-row overflow-hidden p-0"
   >
     <Header transition:animate={headerTransition} />
-    <Main transition:persist />
-    <Aside transition:persist />
+    <slot />
   </body>
 </html>

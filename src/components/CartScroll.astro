@@ -1,0 +1,66 @@
+---
+import { FONTS } from '~/constants/Fonts';
+import Title from '~/Atoms/Title.astro';
+
+type Props = {
+  count?: number;
+  scroll?: boolean;
+  [key: string]: any;
+};
+
+const { count = 0, scroll = true } = Astro.props as Props;
+---
+
+<div class="flex h-screen w-auto flex-col items-center p-4">
+  <div class="m-0 flex h-auto w-full flex-col items-center justify-center p-0">
+    <Title
+      level={2}
+      title="Cart"
+      class="text-theme-main m-0 p-0 text-4xl [text-orientation:sideways] [writing-mode:vertical-rl]"
+      font={FONTS.BEBA}
+    />
+    {count > 0 ? <p class="text-lg">{count}</p> : null}
+  </div>
+  <div
+    id="scrollContainer"
+    class="scroll bg-theme-main relative w-1"
+    class:list={{
+      'h-1/6': !scroll,
+      'h-full': scroll,
+    }}
+  >
+    <div
+      id="scrollPosition"
+      class:list={{
+        hidden: !scroll,
+        block: scroll,
+      }}
+      class="bg-theme-white border-theme-main absolute top-4 left-0.5 h-12 w-8 -translate-x-1/2 rounded-full border-2 shadow-lg"
+    >
+    </div>
+  </div>
+</div>
+
+<script>
+  const content = document.getElementById('mainSection');
+  const scrollPosition = document.getElementById('scrollPosition');
+  const scrollContainer = document.getElementById('scrollContainer');
+
+  if (content && scrollPosition && scrollContainer) {
+    const updateScrollPosition = () => {
+      const scrollHeight = content.scrollHeight + 128;
+      const clientHeight = content.clientHeight;
+      const scrollTop = content.scrollTop + 64; // Adjust for padding
+
+      const scrollPercentage = scrollTop / (scrollHeight - clientHeight);
+      const position =
+        scrollPercentage *
+        (scrollContainer.clientHeight - scrollPosition.clientHeight);
+
+      scrollPosition.style.top = `${position}px`;
+    };
+
+    content.addEventListener('scroll', updateScrollPosition);
+    updateScrollPosition();
+  }
+</script>
