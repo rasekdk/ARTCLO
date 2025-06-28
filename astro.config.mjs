@@ -11,7 +11,6 @@ export default defineConfig({
     plugins: [tailwindcss()],
     resolve: {
       alias: {
-        // Alias “~” apuntando a tu carpeta src
         '~': path.resolve('./src'),
       },
     },
