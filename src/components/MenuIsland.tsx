@@ -1,7 +1,8 @@
+// Modules
 import type { FunctionalComponent } from 'preact';
 import { useState, useEffect } from 'preact/hooks';
 import { COLORS } from '~/constants/Colors';
-import MENU_ITEMS from '~/constants/MenuItems';
+import { MENU_ITEMS } from '~/constants/Menu';
 
 const MenuIsland: FunctionalComponent = () => {
   // 1) Arrancamos en SSR con cadena vacía (no hay window allí)

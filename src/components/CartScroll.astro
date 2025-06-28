@@ -1,32 +1,41 @@
 ---
+// Const
 import { FONTS } from '~/constants/Fonts';
+import { asideColors } from '~/constants/Aside';
+
+// Components
+import type { CartScrollType } from '~/types/Components';
+
+// Atoms
 import Title from '~/atoms/Title.astro';
 
-type Props = {
-  count?: number;
-  scroll?: boolean;
-  [key: string]: any;
-};
-
-const { count = 0, scroll = true } = Astro.props as Props;
+const { background, count = 0, scroll = true } = Astro.props as CartScrollType;
+const { color, scrollBg } = asideColors[background];
 ---
 
-<div class="flex h-screen w-auto flex-col items-center p-4">
+<div
+  class="top-0 right-0 flex h-screen w-auto flex-col items-center p-4"
+  class:list={{
+    ['absolute']: background === 'transparent',
+  }}
+>
   <div class="m-0 flex h-auto w-full flex-col items-center justify-center p-0">
     <Title
       level={5}
       title="Cart"
-      class="text-theme-main m-0 p-0 text-4xl [text-orientation:sideways] [writing-mode:vertical-rl]"
-      font={FONTS.BEBA}
+      color={color}
+      class=`m-0 p-0 text-4xl [text-orientation:sideways] [writing-mode:vertical-rl]`
+      font={FONTS.ANTON}
     />
     {count > 0 ? <p class="text-lg">{count}</p> : null}
   </div>
   <div
     id="scrollContainer"
-    class="scroll bg-theme-main relative w-1"
+    class=`scroll relative w-1`
     class:list={{
       'h-1/6': !scroll,
       'h-full': scroll,
+      [`bg-theme-${color}`]: color,
     }}
   >
     <div
@@ -34,8 +43,9 @@ const { count = 0, scroll = true } = Astro.props as Props;
       class:list={{
         hidden: !scroll,
         block: scroll,
+        scrollBg,
       }}
-      class="bg-theme-white border-theme-main absolute top-4 left-0.5 h-12 w-8 -translate-x-1/2 rounded-full border-2 shadow-lg"
+      class="bg-theme-white absolute top-4 left-0.5 h-12 w-8 -translate-x-1/2 rounded-full border-2 shadow-lg"
     >
     </div>
   </div>

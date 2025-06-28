@@ -1,6 +1,11 @@
-import type { FontsType } from '~/types/Fonts';
-
-export const FONTS: Record<string, FontsType> = {
+export const FONTS = {
   ANTON: 'anton',
   OSWALD: 'oswald',
+} as const;
+
+export const CASING = {
+  UPPERCASE: 'uppercase',
+  LOWERCASE: 'lowercase',
+  CAPITALIZE: 'capitalize',
+  NORMAL: 'normal-case',
 };

@@ -1,20 +1,37 @@
 ---
+// Modules
 import { transitionEnabledOnThisPage } from 'astro:transitions/client';
-import Title from '~/atoms/Title.astro';
-import { FONTS } from '~/constants/Fonts';
 
-type Props = {
-  class?: string;
-  [key: string]: any;
-};
+// Const
+import { asideColors } from '~/constants/Aside';
 
-const { class: className = '', ...props } = Astro.props as Props;
+// Types
+import type { AsidePropsType } from '~/types/Sections';
+
+// Components
+import CartScroll from '~/components/CartScroll.astro';
+
+const {
+  background = 'pattern',
+  class: className = '',
+  size = 'medium',
+  ...props
+} = Astro.props as AsidePropsType;
+
+const { backgroundClass } = asideColors[background];
 ---
 
 <aside
   {...props}
-  class:list={className}
-  class="flex h-screen w-full flex-row items-center justify-center bg-cover bg-center bg-no-repeat p-0"
+  class:list={{
+    className,
+    [backgroundClass]: Boolean(backgroundClass),
+    'w-auto': size === 'small',
+    'w-full': size === 'medium',
+    'w-0': background === 'transparent',
+  }}
+  class="relative flex h-screen flex-row items-center justify-center bg-cover bg-center bg-no-repeat p-0"
 >
   <slot />
+  <CartScroll scroll={false} background={background} />
 </aside>

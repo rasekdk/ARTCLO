@@ -1,6 +1,4 @@
-import type { MenuItem } from "~/types/Menu";
-
-const MENU_ITEMS: MenuItem[] = [
+export const MENU_ITEMS = [
   {
     id: 'collection',
     label: 'Collection',
@@ -21,6 +19,6 @@ const MENU_ITEMS: MenuItem[] = [
     label: 'Culture',
     url: '/culture',
   },
-];
+] as const;
 
-export default MENU_ITEMS;  
+export const MENU_TYPES = ['default', 'burger'] as const;
