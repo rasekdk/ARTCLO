@@ -1,4 +1,3 @@
-// .eslintrc.cjs
 module.exports = {
   root: true,
   env: {
@@ -16,22 +15,18 @@ module.exports = {
   plugins: ['@typescript-eslint', 'astro', 'prettier'],
   extends: [
     'eslint:recommended',
-    'plugin:astro/recommended', // reglas Astro
+    'plugin:astro/recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended', // integra Prettier
-    'prettier', // desactiva reglas que choquen
+    'plugin:prettier/recommended',
+    'prettier',
   ],
   overrides: [
     {
       files: ['*.astro'],
-      rules: {
-        // aquí puedes desactivar o ajustar reglas solo para .astro
-      },
+      rules: {},
     },
   ],
   rules: {
-    // fuerza estilo Prettier como error
     'prettier/prettier': ['error'],
-    // tus ajustes extra…
   },
 };
