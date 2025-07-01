@@ -2,6 +2,8 @@
 
 This repository hosts a small website built with **Astro**, Preact and TailwindCSS. The aim is to provide a base for experimenting with a fictitious store called **Art & Clothing**.
 
+See `CONTRIBUTING.md` for the English-only policy.
+
 It includes several sections (Collection, Clothing, Footwear, Culture) and reusable components written in Astro and Preact. Feel free to use it as inspiration or as the starting point for your own catalogue.
 
 ## Project structure
