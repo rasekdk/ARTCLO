@@ -25,7 +25,7 @@ const { color, scrollBg } = asideColors[background];
       title="Cart"
       color={color}
       class=`m-0 p-0 text-4xl [text-orientation:sideways] [writing-mode:vertical-rl]`
-      font={FONTS.ANTON}
+      fontFamily={FONTS.ANTON}
     />
     {count > 0 ? <p class="text-lg">{count}</p> : null}
   </div>
@@ -43,9 +43,9 @@ const { color, scrollBg } = asideColors[background];
       class:list={{
         hidden: !scroll,
         block: scroll,
-        scrollBg,
+        [`bg-theme-${scrollBg}`]: Boolean(scrollBg),
       }}
-      class="bg-theme-white absolute top-4 left-0.5 h-12 w-8 -translate-x-1/2 rounded-full border-2 shadow-lg"
+      class="absolute top-4 left-0.5 h-12 w-8 -translate-x-1/2 rounded-full border-2 shadow-lg"
     >
     </div>
   </div>
