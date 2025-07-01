@@ -3,6 +3,8 @@ import { ClientRouter } from 'astro:transitions';
 
 import '~/styles/global.css';
 
+import { initVTFallback } from '../scripts/fallback-vt.js';
+
 // Types
 import type { LayoutPropsType } from '~/types/Sections';
 import type { RouteType } from '~/types/Routes';
@@ -49,5 +51,10 @@ const currentPath = Astro.url.pathname as RouteType;
     <Aside size={asideSize} background={asideBackground}>
       <slot name="aside" />
     </Aside>
+    <script is:inline>
+      {
+        initVTFallback();
+      }
+    </script>
   </body>
 </html>
