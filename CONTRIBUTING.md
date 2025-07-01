@@ -20,6 +20,7 @@
    - When summarizing changes, prefer the present imperative ("Add feature X", "Fix typo") in English.
    - **PR descriptions must consist ONLY of a concise summary of the changes.**
      Do **not** include testing notes, task/ticket links, or additional sections such as "Testing" or "Task ID".
+   - Do **not** reference the domain `chatgpt.codex.task.id` anywhere in documentation or PR messages.
 
 6. **Comics or Visual Assets**
    - Speech bubbles, captions, onomatopoeia, and credits must be in English.
