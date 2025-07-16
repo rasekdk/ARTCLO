@@ -22,9 +22,9 @@ const {
   {...props}
   class="font-anton hover:text-theme-main m-0 p-0 transition-all duration-300 ease-in-out"
   class:list={{
+    [`${parentClasses}`]: Boolean(parentClasses),
     [casing]: Boolean(casing),
-    parentClasses,
-    [`text-theme-${isActive ? 'main' : color}`]: true,
+    [`text-theme-${isActive ? 'main' : color}`]: Boolean(isActive),
   }}
 >
   <slot />

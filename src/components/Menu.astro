@@ -1,4 +1,7 @@
 ---
+// Atoms
+import Link from '~/atoms/Link.astro';
+
 // Const
 import { MENU_ITEMS } from '~/constants/Menu';
 
@@ -15,8 +18,8 @@ const pathname = Astro.url.pathname as RouteType;
     MENU_ITEMS.map(({ url, id, label }) => {
       const isActive = pathname === url;
       return (
-        <a
-          transition:name="menu-link"
+        <Link
+          transition:name={`menu-item-${id}`}
           href={url}
           class={`menu-link font-anton hover:text-theme-main m-0 p-0 leading-none uppercase transition-all duration-300 ease-in-out hover:text-[clamp(3rem,23cqw,6.5rem)] ${
             isActive
@@ -27,7 +30,7 @@ const pathname = Astro.url.pathname as RouteType;
           data-astro-prefetch="hover"
         >
           {label}
-        </a>
+        </Link>
       );
     })
   }
