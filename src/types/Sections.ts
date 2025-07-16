@@ -8,7 +8,7 @@ import { asideColors } from '~/constants/Aside';
 import type { ColorsType } from './Colors';
 
 // Common
-type ComponentSizeType = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
+type ComponentSizeType = 'xsmall' | 'small' | 'medium' | 'large' | 'xLarge';
 
 // Layout
 export type LayoutPropsType = {
