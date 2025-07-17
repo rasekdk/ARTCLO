@@ -10,14 +10,15 @@ import type { CartScrollType } from '~/types/Components';
 import Title from '~/atoms/Title.astro';
 
 const { background, count = 0, scroll = true } = Astro.props as CartScrollType;
-const { color, scrollBg } = asideColors[background];
+const { color, scrollBg, scrollBackgroundClass } = asideColors[background];
 ---
 
 <div
-  class="top-0 right-0 flex h-screen w-auto flex-col items-center p-4"
+  class="absolute top-0 right-0 box-content flex h-screen w-8 max-w-8 flex-col items-center p-4"
   class:list={{
-    ['absolute']: background === 'transparent',
+    [scrollBackgroundClass]: Boolean(scrollBackgroundClass),
   }}
+  transition:name="cartScrollContainer"
 >
   <div class="m-0 flex h-auto w-full flex-col items-center justify-center p-0">
     <Title
@@ -25,7 +26,9 @@ const { color, scrollBg } = asideColors[background];
       title="Cart"
       color={color}
       class=`m-0 p-0 text-4xl [text-orientation:sideways] [writing-mode:vertical-rl]`
-      fontFamily={FONTS.ANTON}
+      font={FONTS.ANTON}
+      fontSize="8"
+      transition:name="cartScrollTitle"
     />
     {count > 0 ? <p class="text-lg">{count}</p> : null}
   </div>
@@ -37,6 +40,7 @@ const { color, scrollBg } = asideColors[background];
       'h-full': scroll,
       [`bg-theme-${color}`]: color,
     }}
+    transition:name="cartScrollLine"
   >
     <div
       id="scrollPosition"
@@ -45,14 +49,15 @@ const { color, scrollBg } = asideColors[background];
         block: scroll,
         [`bg-theme-${scrollBg}`]: Boolean(scrollBg),
       }}
-      class="absolute top-4 left-0.5 h-12 w-8 -translate-x-1/2 rounded-full border-2 shadow-lg"
+      class="bg-theme-white absolute top-4 left-0.5 h-12 w-8 -translate-x-1/2 rounded-full border-2 shadow-lg"
+      transition:name="cartScrollPosition"
     >
     </div>
   </div>
 </div>
 
 <script>
-  const content = document.getElementById('mainSection');
+  const content = document.getElementById('scroll-section');
   const scrollPosition = document.getElementById('scrollPosition');
   const scrollContainer = document.getElementById('scrollContainer');
 

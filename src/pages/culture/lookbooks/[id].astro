@@ -1,0 +1,24 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '~/layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('culture');
+  return posts.map((post) => {
+    const [category, slug] = post.slug.split('/');
+
+    return {
+      params: { id: slug, category },
+      props: { post },
+    };
+  });
+}
+
+const { id } = Astro.params;
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout>
+  <Content class="flex w-2/3 flex-col overflow-scroll" />
+</Layout>

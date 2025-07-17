@@ -24,7 +24,7 @@ const Tag = `h${level}` as keyof HTMLElementTagNameMap;
   {...props}
   class="m-0 p-0 leading-[1em]"
   class:list={{
-    parentClasses,
+    [`${parentClasses}`]: Boolean(parentClasses),
     [`font-${fontFamily}`]: Boolean(fontFamily),
     [`text-[${fontSize}]`]: Boolean(fontSize),
     [`text-theme-${color}`]: Boolean(color),

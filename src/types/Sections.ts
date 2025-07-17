@@ -8,7 +8,7 @@ import { asideColors } from '~/constants/Aside';
 import type { ColorsType } from './Colors';
 
 // Common
-type ComponentSizeType = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
+type ComponentSizeType = 'xsmall' | 'small' | 'medium' | 'large' | 'xLarge';
 
 // Layout
 export type LayoutPropsType = {
@@ -16,6 +16,7 @@ export type LayoutPropsType = {
   mainSize?: MainSizeType;
   asideBackground?: 'pattern' | ColorsType;
   asideSize?: AsideSizeType;
+  asideScroll?: boolean;
 };
 
 // Header
@@ -32,4 +33,5 @@ export type AsideColorsType = (typeof asideColors)[AsideBackgroundType];
 export interface AsidePropsType extends HTMLAttributes<'aside'> {
   size?: AsideSizeType;
   background?: AsideBackgroundType;
+  scroll?: boolean;
 }

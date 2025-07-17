@@ -1,0 +1,29 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '~/layouts/Layout.astro';
+import Main from '~/section/Main.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('culture');
+  return posts.map((post) => {
+    const [category, slug] = post.slug.split('/');
+
+    return {
+      params: { id: slug, category },
+      props: { post },
+    };
+  });
+}
+
+const { id } = Astro.params;
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout>
+  <Main>
+    <h1 class="text-7xl">{post.data.title}</h1>
+    <h2 class="text-4xl">{post.data.subtitle}</h2>
+    <Content />
+  </Main>
+</Layout>

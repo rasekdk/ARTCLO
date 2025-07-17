@@ -1,11 +1,11 @@
 // Const
-import { MENU_ITEMS, MENU_TYPES } from '~/constants/Menu';
+import { MENU_ITEMS, MENU_MODES } from '~/constants/Menu';
 
 // Types
 export type MenuItemType = (typeof MENU_ITEMS)[number];
 export type MenuItemId = MenuItemType['id'];
 export type MenuItemUrl = MenuItemType['url'];
-export type MenuMode = (typeof MENU_TYPES)[number];
+export type MenuMode = (typeof MENU_MODES)[number];
 
 export type MenuType = {
   items: MenuItemType[];
