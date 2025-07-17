@@ -1,24 +1,26 @@
+import { ROUTES } from '~/constants/Routes';
+
 export const MENU_ITEMS = [
   {
     id: 'collection',
     label: 'Collection',
-    url: '/collection',
+    url: ROUTES.COLLECTION,
   },
   {
     id: 'clothing',
     label: 'Clothing',
-    url: '/clothing',
+    url: ROUTES.CLOTHING,
   },
   {
     id: 'footwear',
     label: 'Footwear',
-    url: '/footwear',
+    url: ROUTES.FOOTWEAR,
   },
   {
     id: 'culture',
     label: 'Culture',
-    url: '/culture',
+    url: ROUTES.CULTURE,
   },
 ] as const;
 
-export const MENU_TYPES = ['default', 'burger'] as const;
+export const MENU_MODES = ['default', 'burger'] as const;

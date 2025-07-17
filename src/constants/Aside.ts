@@ -18,7 +18,7 @@ export const asideColors = {
     scrollBg: 'white',
   },
   pattern: {
-    backgroundClass: 'bg-[url(/svg/topography.svg)]',
+    backgroundClass: 'bg-theme-white bg-[url(/svg/topography.svg)]',
     color: 'main',
     scrollBackgroundClass: 'bg-transparent',
     scrollBg: 'white',

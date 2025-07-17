@@ -16,7 +16,7 @@ const pathname = Astro.url.pathname as RouteType;
 >
   {
     MENU_ITEMS.map(({ url, id, label }) => {
-      const isActive = pathname === url;
+      const isActive = pathname === url || pathname.includes(url);
       return (
         <Link
           transition:name={`menu-item-${id}`}

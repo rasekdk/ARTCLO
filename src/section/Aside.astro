@@ -1,7 +1,4 @@
 ---
-// Modules
-import { transitionEnabledOnThisPage } from 'astro:transitions/client';
-
 // Const
 import { asideColors } from '~/constants/Aside';
 
@@ -15,6 +12,7 @@ const {
   background = 'white',
   class: className = '',
   size = 'medium',
+  scroll = false,
   ...props
 } = Astro.props as AsidePropsType;
 
@@ -31,9 +29,8 @@ const { backgroundClass } = asideColors[background];
     'w-1/3 p-4': size === 'large',
     'max-w-2/3 p-4': size === 'xLarge',
   }}
-  transition:name="aside"
 >
   <slot />
 </aside>
 
-<CartScroll scroll={false} background={background} />
+<CartScroll scroll={scroll} background={background} />

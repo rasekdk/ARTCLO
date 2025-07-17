@@ -1,9 +1,9 @@
 ---
+// Depencencies
 import { ClientRouter } from 'astro:transitions';
 
+// Styles
 import '~/styles/global.css';
-
-import { initVTFallback } from '../scripts/fallback-vt.js';
 
 // Types
 import type { LayoutPropsType } from '~/types/Sections';
@@ -12,13 +12,13 @@ import type { RouteType } from '~/types/Routes';
 // Sections
 import Header from '~/section/Header.astro';
 import Aside from '~/section/Aside.astro';
-import Main from '~/section/Main.astro';
 
 const {
   headerSize = 'medium',
   mainSize = 'medium',
   asideBackground = 'white',
   asideSize = 'medium',
+  asideScroll = false,
 } = Astro.props as LayoutPropsType;
 
 const currentPath = Astro.url.pathname as RouteType;
@@ -43,13 +43,8 @@ const currentPath = Astro.url.pathname as RouteType;
 
     <slot />
 
-    <Aside size={asideSize} background={asideBackground}>
+    <Aside size={asideSize} background={asideBackground} scroll={asideScroll}>
       <slot name="aside" />
     </Aside>
-    <script is:inline>
-      {
-        initVTFallback();
-      }
-    </script>
   </body>
 </html>
