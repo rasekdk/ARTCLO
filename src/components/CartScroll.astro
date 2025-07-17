@@ -47,7 +47,7 @@ const { color, scrollBg, scrollBackgroundClass } = asideColors[background];
       class:list={{
         hidden: !scroll,
         block: scroll,
-        scrollBg,
+        [`bg-theme-${scrollBg}`]: Boolean(scrollBg),
       }}
       class="bg-theme-white absolute top-4 left-0.5 h-12 w-8 -translate-x-1/2 rounded-full border-2 shadow-lg"
       transition:name="cartScrollPosition"
