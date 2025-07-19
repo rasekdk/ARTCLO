@@ -121,21 +121,31 @@ const imageList = ImageService.parseImageList(body);
   });
 </script>
 
-<script is:inline>
+<script>
   document.addEventListener('astro:page-load', () => {
-    const mainImage = document.getElementById('lookbook-main-image');
+    const { pathname } = window.location;
+    const [root, collection, category, slug] = pathname.split('/');
 
-    if (!mainImage) throw new Error("Couldn't find the main image of the page");
+    if (category === 'lookbooks') {
+      const mainImage = document.getElementById(
+        'lookbook-main-image',
+      ) as HTMLImageElement;
 
-    const images = document.querySelectorAll('img[data-item-image]');
+      if (!mainImage)
+        throw new Error("Couldn't find the main image of the page");
 
-    if (!images) throw new Error("Couldn't find any images on the page");
+      const images = document.querySelectorAll(
+        'img[data-item-image]',
+      ) as NodeListOf<HTMLImageElement>;
 
-    images.forEach((image) => {
-      image.addEventListener('click', (event) => {
-        const img = event.currentTarget;
-        mainImage.src = img.src;
+      if (!images) throw new Error("Couldn't find any images on the page");
+
+      images.forEach((image) => {
+        image.addEventListener('click', (event) => {
+          const img = event.currentTarget as HTMLImageElement;
+          mainImage.src = img.src;
+        });
       });
-    });
+    }
   });
 </script>

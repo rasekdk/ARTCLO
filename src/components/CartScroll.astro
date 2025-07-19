@@ -14,7 +14,7 @@ const { color, scrollBg, scrollBackgroundClass } = asideColors[background];
 ---
 
 <div
-  class="absolute top-0 right-0 box-content flex h-screen w-8 max-w-8 flex-col items-center p-4"
+  class="absolute top-0 right-0 box-content flex h-full w-8 max-w-8 flex-col items-center pt-0 pr-4 pb-0 pl-4"
   class:list={{
     [scrollBackgroundClass]: Boolean(scrollBackgroundClass),
   }}
@@ -25,33 +25,35 @@ const { color, scrollBg, scrollBackgroundClass } = asideColors[background];
       level={5}
       title="Cart"
       color={color}
-      class=`m-0 p-0 text-4xl [text-orientation:sideways] [writing-mode:vertical-rl]`
+      class=`m-0 p-0 text-4xl [text-orientation:sideways] [writing-mode:vertical-rl] pt-4`
       font={FONTS.ANTON}
       fontSize="8"
       transition:name="cartScrollTitle"
     />
     {count > 0 ? <p class="text-lg">{count}</p> : null}
   </div>
-  <div
-    id="scrollContainer"
-    class=`scroll relative w-1`
-    class:list={{
-      'h-1/6': !scroll,
-      'h-full': scroll,
-      [`bg-theme-${color}`]: color,
-    }}
-    transition:name="cartScrollLine"
-  >
+  <div class="flex h-full w-full items-center justify-center pt-4 pb-4">
     <div
-      id="scrollPosition"
+      id="scrollContainer"
+      class=`relative w-1 pb-4 box-border`
       class:list={{
-        hidden: !scroll,
-        block: scroll,
-        [scrollBg]: Boolean(scrollBg),
+        'h-1/6': !scroll,
+        'h-full': scroll,
+        [`bg-theme-${color}`]: color,
       }}
-      class="absolute top-4 left-0.5 h-12 w-8 -translate-x-1/2 rounded-full border-2 shadow-lg"
-      transition:name="cartScrollPosition"
+      transition:name="cartScrollLine"
     >
+      <div
+        id="scrollPosition"
+        class:list={{
+          hidden: !scroll,
+          block: scroll,
+          [scrollBg]: Boolean(scrollBg),
+        }}
+        class="absolute top-4 left-0.5 h-12 w-8 -translate-x-1/2 rounded-full border-2 shadow-lg"
+        transition:name="cartScrollPosition"
+      >
+      </div>
     </div>
   </div>
 </div>
@@ -59,22 +61,24 @@ const { color, scrollBg, scrollBackgroundClass } = asideColors[background];
 <script>
   document.addEventListener('astro:page-load', () => {
     const content = document.getElementById('scroll-section');
-    const scrollPosition = document.getElementById('scrollPosition');
-    const scrollContainer = document.getElementById('scrollContainer');
+    const scrollPositionElement = document.getElementById('scrollPosition');
+    const scrollContainerElement = document.getElementById('scrollContainer');
     const padding = 16;
 
-    if (content && scrollPosition && scrollContainer) {
+    if (content && scrollPositionElement && scrollContainerElement) {
       const updateScrollPosition = () => {
-        const scrollHeight = content.scrollHeight + scrollPosition.offsetHeight;
+        const scrollHeight = content.scrollHeight;
         const clientHeight = content.clientHeight;
-        const scrollTop = content.scrollTop + padding;
+        const scrollTop = content.scrollTop;
 
         const scrollPercentage = scrollTop / (scrollHeight - clientHeight);
         const position =
           scrollPercentage *
-          (scrollContainer.clientHeight - scrollPosition.clientHeight);
+          (scrollContainerElement.clientHeight -
+            scrollPositionElement.clientHeight -
+            padding * 2);
 
-        scrollPosition.style.top = `${position}px`;
+        scrollPositionElement.style.top = `${position + padding}px`;
       };
 
       content.addEventListener('scroll', updateScrollPosition);
