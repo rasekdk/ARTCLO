@@ -6,6 +6,14 @@ import type { ColorsType } from './Colors';
 import type { CasingType, FontsType } from './Fonts';
 import type { AsideBackgroundType } from './Sections';
 
+// Common
+export type ComponentSizeType =
+  | 'xsmall'
+  | 'small'
+  | 'medium'
+  | 'large'
+  | 'xlarge';
+
 export type LinkPropsType = HTMLAttributes<'a'> & {
   casing?: CasingType;
   color?: ColorsType;
@@ -29,3 +37,6 @@ export interface TitleType extends HTMLAttributes<HeadingTag> {
   color?: ColorsType;
   title?: string;
 }
+
+// Logo
+export type LogoSizeType = ComponentSizeType;

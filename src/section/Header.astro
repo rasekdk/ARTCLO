@@ -2,25 +2,48 @@
 import Vertical from '~/assets/logo/vertical.svg';
 import Menu from '~/components/Menu.astro';
 
-const { currentPath } = Astro.props;
+const { currentPath, logoSize, menuType } = Astro.props;
 const isHome = currentPath === '/';
 ---
 
 <header
-  class="container-parent text-theme-white [container-type:inline-size] absolute bottom-0 left-0 z-10 m-0 flex h-[100dvh] w-1/4 min-w-50 flex-col justify-between pr-0"
+  class="container-parent text-theme-white [container-type:inline-size] pointer-events-none absolute bottom-0 left-0 z-10 m-0 flex h-[100dvh] w-1/4 min-w-50 flex-col justify-between pr-0"
   transition:name="header"
 >
   <a
     href="/"
-    class="z-10 block h-min w-min p-4 transition-all duration-300 ease-in-out"
+    class="pointer-events-auto z-10 block h-min w-min p-4"
     class:list={{
       'text-theme-main': isHome,
       'hover:text-theme-white': isHome,
-      'text-theme-white': !isHome,
+      'text-theme-white': !isHome && logoSize === 'large',
       'hover:text-theme-main': !isHome,
+      'text-theme-black': logoSize === 'small' && !isHome,
     }}
   >
-    <Vertical class="h-auto w-1/2 min-w-40" />
+    <Vertical
+      class="transition-all duration-300"
+      class:list={{
+        [logoSize]: Boolean(logoSize),
+      }}
+      transition:name="logo"
+    />
   </a>
-  <Menu transition:name="menu" />
+  <Menu transition:name="menu" class="pointer-events-auto" type="/" />
 </header>
+
+<style>
+  #logo {
+    height: auto;
+    width: calc(var(--spacing) * 30);
+    &.small {
+      width: calc(var(--spacing) * 10);
+      color: var(--color-theme-black);
+    }
+    &.active,
+    &.small.active {
+      width: calc(var(--spacing) * 30);
+      color: var(--color-theme-white);
+    }
+  }
+</style>

@@ -28,3 +28,13 @@
   font-weight: 100 900;
   src: url('/fonts/Oswald-VariableFont_wght.ttf') format('truetype');
 }
+
+
+  .hidden-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow: scroll;
+  }
+  .hidden-scrollbar::-webkit-scrollbar {
+    display: none;
+  }

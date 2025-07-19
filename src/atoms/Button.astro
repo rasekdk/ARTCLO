@@ -1,0 +1,25 @@
+---
+const { id, class: className } = Astro.props;
+---
+
+<button
+  id={id}
+  class="bg-theme-main font-anton hover:bg-theme-white hover:text-theme-main text-theme-white aspect-square cursor-pointer p-4 align-middle uppercase transition-all"
+  class:list={{
+    [className]: Boolean(className),
+  }}
+  transition:name={id}
+>
+  <slot />
+</button>
+
+<style>
+  button.active {
+    background-color: var(--color-theme-white);
+    color: var(--color-theme-main);
+    &:hover {
+      background-color: var(--color-theme-main);
+      color: var(--color-theme-white);
+    }
+  }
+</style>
