@@ -1,12 +1,18 @@
 ---
-// Atoms
-import Button from '~/atoms/Button.astro';
-import { fade } from 'astro:transitions';
+// Dependencies
+import { getCollection, render } from 'astro:content';
+
+// Services
 import ImageService from '~/services/ImageService';
 
-import { getCollection, render } from 'astro:content';
+// Layout
 import Layout from '~/layouts/Layout.astro';
+
+//Sections
 import Main from '~/section/Main.astro';
+
+// Atoms
+import Button from '~/atoms/Button.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('culture');
@@ -33,7 +39,6 @@ const imageList = ImageService.parseImageList(body);
         href="/culture"
         class="absolute top-0 right-0 z-10"
         id="backButton"
-        transition:animate={fade({ duration: '0s' })}
       >
         [Back]
       </Button>
@@ -110,31 +115,25 @@ const imageList = ImageService.parseImageList(body);
     const history = window.history;
     const backButton = document.getElementById('backButton');
 
-    console.log('history: ', history);
-
     backButton?.addEventListener('click', (event) => {
       history.back();
     });
   });
 </script>
 
-<script>
+<script is:inline>
   document.addEventListener('astro:page-load', () => {
-    const mainImage = document.getElementById(
-      'lookbook-main-image',
-    ) as HTMLImageElement | null;
+    const mainImage = document.getElementById('lookbook-main-image');
 
     if (!mainImage) throw new Error("Couldn't find the main image of the page");
 
-    const images = document.querySelectorAll(
-      'img[data-item-image]',
-    ) as NodeListOf<HTMLImageElement> | null;
+    const images = document.querySelectorAll('img[data-item-image]');
 
     if (!images) throw new Error("Couldn't find any images on the page");
 
-    images.forEach((image: HTMLImageElement) => {
+    images.forEach((image) => {
       image.addEventListener('click', (event) => {
-        const img = event.currentTarget as HTMLImageElement;
+        const img = event.currentTarget;
         mainImage.src = img.src;
       });
     });
