@@ -6,3 +6,10 @@ https://unsplash.com/es/fotos/un-hombre-con-una-camiseta-que-dice-fuera-de-lo-co
 https://unsplash.com/es/fotos/una-mujer-cruzando-una-calle-junto-a-una-motocicleta-L8jfBdVI-vM
 https://unsplash.com/es/fotos/vestido-de-manga-larga-blanco-y-gris-yEpsnv3iRKQ
 https://unsplash.com/es/fotos/una-camiseta-ha-sido-remendada-con-imperdibles-XT-zLcndVYk
+https://unsplash.com/es/fotos/camisa-blanca-y-negra-con-cuello-redondo-vHrGvhtJS_Q
+https://unsplash.com/es/fotos/una-persona-con-una-camisa-purpura-duQptjxqq08
+https://unsplash.com/es/fotos/texto-hK70CTsumjs
+https://unsplash.com/es/fotos/un-hombre-con-una-chaqueta-amarilla-camina-por-la-calle-SBp24XWpx28
+https://unsplash.com/es/fotos/un-hombre-con-sombrero-y-una-chaqueta-negra-RxBnnZ2vxZc
+https://unsplash.com/es/fotos/SeWaHFus16c
+https://unsplash.com/es/fotos/una-persona-con-sombrero-y-levantando-la-mano-V8Fp21_gJ-E

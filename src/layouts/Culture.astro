@@ -68,7 +68,7 @@ const posts = CultureService.getItems(postsCollection, category);
               class:list={{
                 [`bg-url('${data.mainImage}')`]: Boolean(data.mainImage),
               }}
-              transition:name={`culture-item-${slug}`}
+              transition:name={`culture-image-${slug}`}
             >
               <span class="font-anton absolute top-0 left-0 text-4xl font-normal uppercase">
                 [{postCategory}]
@@ -79,7 +79,7 @@ const posts = CultureService.getItems(postsCollection, category);
               <h4 class="font-oswald text-lg font-normal">{data.subtitle}</h4>
               <img
                 src={data.mainImage}
-                class="pointer-events-none absolute -z-1 min-h-full min-w-full opacity-50"
+                class="bg-theme-black pointer-events-none absolute -z-1 min-h-full min-w-full opacity-50"
               />
             </a>
           );

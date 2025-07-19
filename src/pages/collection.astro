@@ -20,9 +20,11 @@ import COLORS from '~/constants/Colors';
   asideBackground="transparent"
 >
   <Main
-    class="m-0 w-1/3 bg-[url('/images/collection.jpg')] bg-cover bg-center p-0"
+    class="m-0 w-1/3 bg-[url('/images/collection.webp')] bg-cover bg-center p-0"
   >
-    <div>
+    <div
+      class="flex h-full w-full flex-col items-center justify-end text-center"
+    >
       <div>
         <Title
           title="A curated drop that defines our season"
@@ -35,12 +37,18 @@ import COLORS from '~/constants/Colors';
           color={COLORS.WHITE}
         />
       </div>
-      <div>
-        <Link href="/clothing" class="text-[clamp(1.5rem, 4vw, 5rem)"
-          >Clothing</Link
+      <div
+        class="flex w-full flex-row flex-wrap content-between justify-between pr-[25%] pb-4 pl-[25%]"
+      >
+        <Link
+          href="/clothing"
+          class="text-theme-white text-[clamp(2rem,2.75vw,4.5rem)]"
+          >[Clothing]</Link
         >
-        <Link href="/footwear" class="text-[clamp(1.5rem, 4vw, 5rem)"
-          >Footwear</Link
+        <Link
+          href="/footwear"
+          class="text-theme-white text-[clamp(2rem,2.75vw,4.5rem)]"
+          >[Footwear]</Link
         >
       </div>
     </div>

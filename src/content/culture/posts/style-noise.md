@@ -1,7 +1,7 @@
 ---
 title: Style ≠ Noise
 subtitle: Minimalism as a form of resistance
-mainImage: /images/culture/posts/style-noise.jpg
+mainImage: /images/culture/posts/style-noise.webp
 date: 30-01-2025
 ---
 
