@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Layout from '~/layouts/Layout.astro';
+import Main from '~/section/Main.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('culture');
@@ -14,11 +15,79 @@ export async function getStaticPaths() {
   });
 }
 
-const { id } = Astro.params;
 const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<Layout>
-  <Content class="flex w-2/3 flex-col overflow-scroll" />
+<Layout asideScroll={true}>
+  <Main class="flex-row gap-4">
+    <div class="relative min-h-full min-w-1/2">
+      <a
+        href="/culture"
+        class="text-theme-white bg-theme-main hover:bg-theme-white hover:text-theme-main font-anton absolute top-0 right-0 flex aspect-square items-center justify-center p-4 align-middle uppercase"
+      >
+        [Back]
+      </a>
+      <img
+        src={post.data.mainImage}
+        class="min-h-full w-full min-w-full object-cover"
+      />
+    </div>
+    <article
+      class="hidden-scrollbar w-full overflow-auto p-0"
+      id="scroll-section"
+    >
+      <h1 class="font-oswald text-8xl">{post.data.title}</h1>
+      <h2 class="font-oswald text-5xl">{post.data.subtitle}</h2>
+      <p class="text-theme-main mb-8">[{post.data.date}]</p>
+      <Content />
+    </article>
+  </Main>
 </Layout>
+
+<style>
+  article {
+    h3 {
+      color: var(--color-theme-main);
+      font-size: calc(var(--spacing) * 6);
+      font-weight: bold;
+    }
+
+    h4 {
+      em {
+        color: var(--color-gray-700);
+        font-size: calc(var(--spacing) * 6);
+      }
+    }
+
+    p {
+      margin-block-end: calc(var(--spacing) * 4);
+    }
+
+    blockquote {
+      p {
+        color: var(--color-theme-black);
+      }
+    }
+
+    em {
+      color: var(--color-gray-700);
+      strong {
+        color: var(--color-theme-main);
+        font-style: normal;
+        font-weight: bold;
+        font-size: calc(var(--spacing) * 5);
+      }
+    }
+
+    strong {
+      font-weight: bold;
+      em {
+        color: var(--color-theme-black);
+        font-style: normal;
+        font-weight: bold;
+        font-size: calc(var(--spacing) * 5);
+      }
+    }
+  }
+</style>

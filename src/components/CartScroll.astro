@@ -47,9 +47,9 @@ const { color, scrollBg, scrollBackgroundClass } = asideColors[background];
       class:list={{
         hidden: !scroll,
         block: scroll,
-        [`bg-theme-${scrollBg}`]: Boolean(scrollBg),
+        [scrollBg]: Boolean(scrollBg),
       }}
-      class="bg-theme-white absolute top-4 left-0.5 h-12 w-8 -translate-x-1/2 rounded-full border-2 shadow-lg"
+      class="absolute top-4 left-0.5 h-12 w-8 -translate-x-1/2 rounded-full border-2 shadow-lg"
       transition:name="cartScrollPosition"
     >
     </div>
@@ -57,25 +57,28 @@ const { color, scrollBg, scrollBackgroundClass } = asideColors[background];
 </div>
 
 <script>
-  const content = document.getElementById('scroll-section');
-  const scrollPosition = document.getElementById('scrollPosition');
-  const scrollContainer = document.getElementById('scrollContainer');
+  document.addEventListener('astro:page-load', () => {
+    const content = document.getElementById('scroll-section');
+    const scrollPosition = document.getElementById('scrollPosition');
+    const scrollContainer = document.getElementById('scrollContainer');
+    const padding = 16;
 
-  if (content && scrollPosition && scrollContainer) {
-    const updateScrollPosition = () => {
-      const scrollHeight = content.scrollHeight + 128;
-      const clientHeight = content.clientHeight;
-      const scrollTop = content.scrollTop + 64; // Adjust for padding
+    if (content && scrollPosition && scrollContainer) {
+      const updateScrollPosition = () => {
+        const scrollHeight = content.scrollHeight + scrollPosition.offsetHeight;
+        const clientHeight = content.clientHeight;
+        const scrollTop = content.scrollTop + padding;
 
-      const scrollPercentage = scrollTop / (scrollHeight - clientHeight);
-      const position =
-        scrollPercentage *
-        (scrollContainer.clientHeight - scrollPosition.clientHeight);
+        const scrollPercentage = scrollTop / (scrollHeight - clientHeight);
+        const position =
+          scrollPercentage *
+          (scrollContainer.clientHeight - scrollPosition.clientHeight);
 
-      scrollPosition.style.top = `${position}px`;
-    };
+        scrollPosition.style.top = `${position}px`;
+      };
 
-    content.addEventListener('scroll', updateScrollPosition);
-    updateScrollPosition();
-  }
+      content.addEventListener('scroll', updateScrollPosition);
+      updateScrollPosition();
+    }
+  });
 </script>

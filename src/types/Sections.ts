@@ -6,12 +6,11 @@ import { asideColors } from '~/constants/Aside';
 
 // Types
 import type { ColorsType } from './Colors';
-
-// Common
-type ComponentSizeType = 'xsmall' | 'small' | 'medium' | 'large' | 'xLarge';
+import type { ComponentSizeType, LogoSizeType } from './Components';
 
 // Layout
 export type LayoutPropsType = {
+  logoSize?: LogoSizeType;
   headerSize?: HeaderSizeType;
   mainSize?: MainSizeType;
   asideBackground?: 'pattern' | ColorsType;

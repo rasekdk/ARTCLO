@@ -1,6 +1,7 @@
 ---
 // Atoms
 import Link from '~/atoms/Link.astro';
+import Button from '~/atoms/Button.astro';
 
 // Const
 import { MENU_ITEMS } from '~/constants/Menu';
@@ -9,19 +10,22 @@ import { MENU_ITEMS } from '~/constants/Menu';
 import type { RouteType } from '~/types/Routes';
 
 const pathname = Astro.url.pathname as RouteType;
+const { class: className } = Astro.props;
 ---
 
 <div
   id="menu"
   class="nav-custom-class bg-theme-black absolute h-full w-full transition-all"
+  class:list={{
+    [className]: Boolean(className),
+  }}
 >
-  <button
+  <Button
     id="menuButton"
-    class="bg-theme-main font-anton pointer-events-auto absolute right-0 bottom-0 z-10 flex aspect-square w-14 transform-[translateX(100%)] cursor-pointer flex-col justify-center align-middle uppercase transition-all"
-    transition:name="menuButton"
+    class="absolute right-0 bottom-0 transform-[translateX(100%)]"
   >
     [Menu]
-  </button>
+  </Button>
 
   <nav>
     {
@@ -67,21 +71,18 @@ const pathname = Astro.url.pathname as RouteType;
       opacity: 1;
     }
   }
-
-  #menuButton.active {
-    background-color: var(--color-theme-white);
-    color: var(--color-theme-main);
-  }
 </style>
 
 <script>
   document.addEventListener('astro:page-load', () => {
     const menu = document.getElementById('menu');
     const menuButton = document.getElementById('menuButton');
+    const logo = document.getElementById('logo');
 
     menuButton?.addEventListener('click', () => {
       menu?.classList.toggle('active');
       menuButton?.classList.toggle('active');
+      logo?.classList.toggle('active');
     });
   });
 </script>
