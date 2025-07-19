@@ -2,7 +2,8 @@
 import Vertical from '~/assets/logo/vertical.svg';
 import Menu from '~/components/Menu.astro';
 
-const { currentPath, logoSize, menuType } = Astro.props;
+const { currentPath, logoSize } = Astro.props;
+console.log(logoSize);
 const isHome = currentPath === '/';
 ---
 
@@ -27,9 +28,10 @@ const isHome = currentPath === '/';
         [logoSize]: Boolean(logoSize),
       }}
       transition:name="logo"
+      id="logo"
     />
   </a>
-  <Menu transition:name="menu" class="pointer-events-auto" type="/" />
+  <Menu transition:name="menu" class="pointer-events-auto" />
 </header>
 
 <style>
@@ -38,10 +40,9 @@ const isHome = currentPath === '/';
     width: calc(var(--spacing) * 30);
     &.small {
       width: calc(var(--spacing) * 10);
-      color: var(--color-theme-black);
+      color: var(--color-theme-main);
     }
-    &.active,
-    &.small.active {
+    &.active {
       width: calc(var(--spacing) * 30);
       color: var(--color-theme-white);
     }
