@@ -11,27 +11,77 @@ import type { RouteType } from '~/types/Routes';
 const pathname = Astro.url.pathname as RouteType;
 ---
 
-<nav
-  class="m-0 flex h-full w-full flex-col items-start justify-end overflow-hidden p-0"
+<div
+  id="menu"
+  class="nav-custom-class bg-theme-black absolute h-full w-full transition-all"
 >
-  {
-    MENU_ITEMS.map(({ url, id, label }) => {
-      const isActive = pathname === url || pathname.includes(url);
-      return (
-        <Link
-          transition:name={`menu-item-${id}`}
-          href={url}
-          class={`menu-link font-anton hover:text-theme-main m-0 p-0 leading-none uppercase transition-all duration-300 ease-in-out hover:text-[clamp(3rem,23cqw,6.5rem)] ${
-            isActive
-              ? 'text-theme-main text-[clamp(3rem,23cqw,6.5rem)]'
-              : 'text-theme-white text-[clamp(2rem,22cqw,6rem)]'
-          }`}
-          aria-current={isActive ? 'page' : undefined}
-          data-astro-prefetch="hover"
-        >
-          {label}
-        </Link>
-      );
-    })
+  <button
+    id="menuButton"
+    class="bg-theme-main font-anton pointer-events-auto absolute right-0 bottom-0 z-10 flex aspect-square w-14 transform-[translateX(100%)] cursor-pointer flex-col justify-center align-middle uppercase transition-all"
+    transition:name="menuButton"
+  >
+    [Menu]
+  </button>
+
+  <nav>
+    {
+      MENU_ITEMS.map(({ url, id, label }) => {
+        const isActive = pathname === url || pathname.includes(url);
+        return (
+          <Link
+            transition:name={`menu-item-${id}`}
+            href={url}
+            class={`menu-link font-anton hover:text-theme-main m-0 p-0 leading-none uppercase transition-all duration-300 ease-in-out hover:text-[clamp(3rem,23cqw,6.5rem)] ${
+              isActive
+                ? 'text-theme-main text-[clamp(3rem,23cqw,6.5rem)]'
+                : 'text-theme-white text-[clamp(2rem,22cqw,6rem)]'
+            }`}
+            aria-current={isActive ? 'page' : undefined}
+            data-astro-prefetch="hover"
+          >
+            {label}
+          </Link>
+        );
+      })
+    }
+  </nav>
+</div>
+
+<style>
+  .nav-custom-class {
+    transform: translateX(-100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: end;
+    align-items: start;
   }
-</nav>
+
+  .nav-custom-class.active {
+    transform: translateX(0%);
+    nav {
+      opacity: 1;
+    }
+  }
+
+  #menuButton.active {
+    background-color: var(--color-theme-white);
+    color: var(--color-theme-main);
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const menu = document.getElementById('menu');
+    const menuButton = document.getElementById('menuButton');
+
+    menuButton?.addEventListener('click', () => {
+      menu?.classList.toggle('active');
+      menuButton?.classList.toggle('active');
+    });
+  });
+</script>
