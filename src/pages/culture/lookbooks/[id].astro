@@ -51,57 +51,56 @@ const imageList = ImageService.parseImageList(body);
         {
           imageList.map((image, index) => {
             const { url, slug, alt } = image;
-            const active = index === 0 ? 'active' : '';
+            const imageData = images?.[index];
+            const authorData = imageData?.author;
+            const showInfo = Boolean(
+              imageData?.src && authorData?.name && authorData?.profile,
+            );
 
-            if ( images?.[index]?.src &&
-                images[index]?.author?.name &&
-                images[index]?.author?.profile
-              ) {
-              return (
+            return (
+              <>
                 <div
-                  class={`relative ${active} flex items-end justify-end overflow-hidden`}
+                  class="relative flex items-end justify-end overflow-hidden"
+                  class:list={{
+                    active: index === 0,
+                  }}
                   data-main-image
                   data-index={index}
                   id={`main-${slug}`}
                 >
-                  <img src={url} alt={alt} class="absolute z-0 opacity-50" />
+                  <img src={url} alt={alt} class="opacity-50" />
                 </div>
-                <div
-                  class="image-info align-right text-theme-black bg-theme-white absolute right-0 bottom-0 mb-4 inline-block h-fit w-auto pt-1 pr-4 pb-1 pl-4"
-                  transition:name={`info-${slug}`}
-                >
-                  Photo from{' '}
-                  <a
-                    target="_blank"
-                    href={images[index].author.profile}
-                    class="hover:text-theme-main"
-                  >
-                    {images[index].author.name}
-                  </a>{' '}
-                  at{' '}
-                  <a
-                    target="_blank"
-                    class="hover:text-theme-main"
-                    href={images[index].src}
-                  >
-                    Unsplash
-                  </a>
-                </div>
-              )
-            }
 
-            return (
-              <div
-                class={`relative ${active} flex items-end justify-end overflow-hidden`}
-                data-main-image
-                data-index={index}
-                id={`main-${slug}`}
-              >
-                <img src={url} alt={alt} class="absolute z-0 opacity-50" />
-              </div>
-            )
+                {showInfo && (
+                  <div
+                    class="image-info align-right text-theme-black bg-theme-white absolute right-0 bottom-0 z-10 mb-4 inline-block h-fit w-auto pt-1 pr-4 pb-1 pl-4"
+                    data-info-main-image={index}
+                    class:list={{
+                      active: index === 0,
+                    }}
+                  >
+                    Photo from{' '}
+                    <a
+                      target="_blank"
+                      href={authorData.profile}
+                      class="hover:text-theme-main"
+                    >
+                      {authorData.name}
+                    </a>{' '}
+                    at{' '}
+                    <a
+                      target="_blank"
+                      class="hover:text-theme-main"
+                      href={imageData.src}
+                    >
+                      Unsplash
+                    </a>
+                  </div>
+                )}
+              </>
+            );
           })
-        }
+        }) }
       </div>
     </div>
     <article
@@ -170,7 +169,7 @@ const imageList = ImageService.parseImageList(body);
     height: 100dvh;
     width: 100%;
     min-height: 100dvh;
-    transition: 0.3s;
+    transition: 0.5s ease-in-out;
 
     &.left {
       transform: translateX(-100%);
@@ -183,15 +182,19 @@ const imageList = ImageService.parseImageList(body);
       object-fit: cover;
       min-width: 100%;
     }
-    .image-info {
-      opacity: 0;
-    }
     &.active {
       transform: translate(0%);
-      z-index: 0;
       .image-info {
         opacity: 100;
       }
+    }
+  }
+
+  div[data-info-main-image] {
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+    &.active {
+      opacity: 100%;
     }
   }
 </style>
@@ -218,6 +221,9 @@ const imageList = ImageService.parseImageList(body);
       ) as NodeListOf<HTMLImageElement>;
       const mainImages = document.querySelectorAll(
         'div[data-main-image]',
+      ) as NodeListOf<HTMLElement>;
+      const mainImagesInfo = document.querySelectorAll(
+        `div[data-info-main-image]`,
       ) as NodeListOf<HTMLElement>;
 
       if (!mainImages)
@@ -249,6 +255,13 @@ const imageList = ImageService.parseImageList(body);
             node.classList.remove(
               node.dataset.index > mainImage.dataset.index ? 'left' : 'right',
             );
+          });
+
+          mainImagesInfo.forEach((node) => {
+            node.classList.remove('active');
+            if (node.dataset.infoMainImage === mainImage.dataset.index) {
+              node.classList.add('active');
+            }
           });
 
           mainImage?.classList.add('active');

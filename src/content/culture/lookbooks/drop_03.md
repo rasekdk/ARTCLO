@@ -47,7 +47,7 @@ images:
   08:
     src: https://unsplash.com/photos/man-sitting-on-bench--7eS5YLZ88M
     author:
-      name: Naitian（Tony） Wang
+      name: Naitian Wang
       profile: https://unsplash.com/@tonywang7
 ---
 
