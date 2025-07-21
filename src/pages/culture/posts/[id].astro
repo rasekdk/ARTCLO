@@ -26,7 +26,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 const importedImages = import.meta.glob<{ default: ImageMetadata }>(
-  `/src/assets/images/culture/lookbooks/*.{jpeg,jpg,png,gif,webp}`,
+  `/src/assets/images/culture/posts/*.{jpeg,jpg,png,gif,webp}`,
 );
 ---
 
