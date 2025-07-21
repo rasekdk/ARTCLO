@@ -71,7 +71,9 @@ const imageList = ImageService.parseImageList(body);
                   data-main-image
                   data-index={index}
                   id={`main-${slug}`}
-                  transition:name={`culture-image-${post.slug}`}
+                  transition:name={
+                    index === 0 ? `culture-image-${post.slug}` : ''
+                  }
                 >
                   <Image
                     src={importedImages[url]()}
@@ -179,6 +181,7 @@ const imageList = ImageService.parseImageList(body);
     width: 100%;
     min-height: 100dvh;
     transition: 0.5s ease-in-out;
+    opacity: 0;
 
     &.left {
       transform: translateX(-100%);
@@ -193,6 +196,7 @@ const imageList = ImageService.parseImageList(body);
     }
     &.active {
       transform: translate(0%);
+      opacity: 1;
       .image-info {
         opacity: 100;
       }
