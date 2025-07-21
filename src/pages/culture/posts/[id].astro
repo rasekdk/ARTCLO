@@ -25,6 +25,9 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const importedImages = import.meta.glob<{ default: ImageMetadata }>(
+  `/src/assets/images/culture/lookbooks/*.{jpeg,jpg,png,gif,webp}`,
+);
 ---
 
 <Layout asideScroll={true}>
@@ -37,8 +40,9 @@ const { Content } = await render(post);
       >
         [Back]
       </Button>
-      <img
-        src={post.data.mainImage}
+      <Image
+        src={importedImages[post.data.mainImage]()}
+        alt={post.data.title}
         class="z-0 min-h-full w-full min-w-full object-cover opacity-50"
         transition:name={`culture-image-${post.slug}`}
       />
