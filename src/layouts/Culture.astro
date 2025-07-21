@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 // Layout
 import Layout from '~/layouts/Layout.astro';
 
@@ -20,6 +22,10 @@ import CultureService from '~/services/CultureService';
 const postsCollection = await getCollection('culture');
 const pathname = Astro.url.pathname as RouteType;
 const [, , category] = pathname.split('/');
+
+const importedImages = import.meta.glob<{ default: ImageMetadata }>(
+  `/src/assets/images/culture/{lookbooks,posts}/*.{jpeg,jpg,png,gif,webp}`,
+);
 
 const posts = CultureService.getItems(postsCollection, category);
 ---
@@ -60,9 +66,6 @@ const posts = CultureService.getItems(postsCollection, category);
             <a
               href={`/${collection}/${slug}`}
               class={`bg-theme-black relative z-1 flex aspect-4/3 w-1/3 flex-col justify-center overflow-hidden bg-cover bg-center text-center text-white`}
-              class:list={{
-                [`bg-url('${data.mainImage}')`]: Boolean(data.mainImage),
-              }}
               transition:name={`culture-image-${slug}`}
             >
               <span class="font-anton absolute top-0 left-0 text-4xl font-normal uppercase">
@@ -72,8 +75,9 @@ const posts = CultureService.getItems(postsCollection, category);
                 {data.title}
               </h3>
               <h4 class="font-oswald text-lg font-normal">{data.subtitle}</h4>
-              <img
-                src={data.mainImage}
+              <Image
+                src={importedImages[data.mainImage]()}
+                alt={data.subtitle}
                 class="bg-theme-black pointer-events-none absolute -z-1 min-h-full min-w-full opacity-50"
               />
             </a>
