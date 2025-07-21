@@ -32,7 +32,7 @@ const { color, scrollBg, scrollBackgroundClass } = asideColors[background];
     />
     {count > 0 ? <p class="text-lg">{count}</p> : null}
   </div>
-  <div class="flex h-full w-full items-center justify-center pt-4 pb-4">
+  <div class="flex h-full w-full items-start justify-center pt-4 pb-4">
     <div
       id="scrollContainer"
       class=`relative w-1 pb-4 box-border`
@@ -49,6 +49,7 @@ const { color, scrollBg, scrollBackgroundClass } = asideColors[background];
           hidden: !scroll,
           block: scroll,
           [scrollBg]: Boolean(scrollBg),
+          [`border-theme-${color}`]: color,
         }}
         class="absolute top-4 left-0.5 h-12 w-8 -translate-x-1/2 rounded-full border-2 shadow-lg"
         transition:name="cartScrollPosition"
