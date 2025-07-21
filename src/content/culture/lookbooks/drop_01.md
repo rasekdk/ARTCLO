@@ -3,16 +3,6 @@ title: Drop_01
 subtitle: Subtle contrast
 mainImage: /src/assets/images/culture/lookbooks/drop_01/drop_01_00.webp
 date: 25-01-2025
-images:
-  00:
-    src:
-    author:
-  01:
-    src:
-    author:
-  02:
-    src:
-    author:
 ---
 
 ![Person in a yellow rain jacket walking down stairs holding yellow balloons in an old building](/src/assets/images/culture/lookbooks/drop_01/drop_01_00.webp)
