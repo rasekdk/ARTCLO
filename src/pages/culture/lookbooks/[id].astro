@@ -53,17 +53,21 @@ const imageList = ImageService.parseImageList(body);
             const { url, slug, alt } = image;
             const active = index === 0 ? 'active' : '';
 
-            return (
-              <div
-                class={`relative ${active} flex items-end justify-end overflow-hidden`}
-                data-main-image
-                data-index={index}
-                id={`main-${slug}`}
-              >
-                <img src={url} alt={alt} class="absolute z-0 opacity-50" />
-              </div>
-              <div
-                  class="image-info align-right text-theme-black bg-theme-white absolute inline-block h-fit w-auto pt-1 pr-4 pb-1 pl-4 right-0 bottom-0 mb-4"
+            if ( images?.[index]?.src &&
+                images[index]?.author?.name &&
+                images[index]?.author?.profile
+              ) {
+              return (
+                <div
+                  class={`relative ${active} flex items-end justify-end overflow-hidden`}
+                  data-main-image
+                  data-index={index}
+                  id={`main-${slug}`}
+                >
+                  <img src={url} alt={alt} class="absolute z-0 opacity-50" />
+                </div>
+                <div
+                  class="image-info align-right text-theme-black bg-theme-white absolute right-0 bottom-0 mb-4 inline-block h-fit w-auto pt-1 pr-4 pb-1 pl-4"
                   transition:name={`info-${slug}`}
                 >
                   Photo from{' '}
@@ -83,7 +87,19 @@ const imageList = ImageService.parseImageList(body);
                     Unsplash
                   </a>
                 </div>
-            );
+              )
+            }
+
+            return (
+              <div
+                class={`relative ${active} flex items-end justify-end overflow-hidden`}
+                data-main-image
+                data-index={index}
+                id={`main-${slug}`}
+              >
+                <img src={url} alt={alt} class="absolute z-0 opacity-50" />
+              </div>
+            )
           })
         }
       </div>
@@ -200,7 +216,9 @@ const imageList = ImageService.parseImageList(body);
       const carrouselImages = document.querySelectorAll(
         'img[data-carrousell-image]',
       ) as NodeListOf<HTMLImageElement>;
-      const mainImages = document.querySelectorAll('div[data-main-image]') as NodeListOf<HTMLElement>;
+      const mainImages = document.querySelectorAll(
+        'div[data-main-image]',
+      ) as NodeListOf<HTMLElement>;
 
       if (!mainImages)
         throw new Error("Couldn't find the main image of the page");
@@ -215,16 +233,14 @@ const imageList = ImageService.parseImageList(body);
           );
 
           if (!mainImage) {
-            throw new Error("Error getting the main image");
-            
+            throw new Error('Error getting the main image');
           }
 
           mainImages.forEach((node) => {
             node.classList.remove('active');
 
             if (!node.dataset.index || !mainImage.dataset.index) {
-              throw new Error("Error getting an image");
-              
+              throw new Error('Error getting an image');
             }
 
             node.classList.add(
