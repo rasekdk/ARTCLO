@@ -3,6 +3,12 @@ title: Style ≠ Noise
 subtitle: Minimalism as a form of resistance
 mainImage: /images/culture/posts/style-noise.webp
 date: 30-01-2025
+images:
+  00:
+    src: https://unsplash.com/photos/assorted-clothes-hanged-on-rack-iKF5W3VrOKU
+    author:
+      name: Jisun Han
+      profile: https://unsplash.com/@hanzlog
 ---
 
 ### There’s a common misunderstanding in fashion:

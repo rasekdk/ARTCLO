@@ -27,14 +27,17 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { body } = post;
+const {
+  body,
+  data: { images },
+} = post;
 
 const imageList = ImageService.parseImageList(body);
 ---
 
 <Layout asideScroll={true}>
   <Main class="flex-row gap-4">
-    <div class="bg-theme-black relative min-h-full min-w-1/2">
+    <div class="bg-theme-black relative min-h-full max-w-1/2 min-w-1/2">
       <Button
         href="/culture"
         class="absolute top-0 right-0 z-10"
@@ -42,12 +45,48 @@ const imageList = ImageService.parseImageList(body);
       >
         [Back]
       </Button>
-      <img
-        src={post.data.mainImage}
-        class="z-0 min-h-full w-full min-w-full object-cover opacity-50"
-        transition:name={`culture-image-${post.slug}`}
-        id="lookbook-main-image"
-      />
+      <div
+        class="relative z-0 flex min-h-full w-full max-w-full min-w-full flex-row flex-nowrap overflow-hidden object-cover"
+      >
+        {
+          imageList.map((image, index) => {
+            const { url, slug, alt } = image;
+            const active = index === 0 ? 'active' : '';
+
+            return (
+              <div
+                class={`relative ${active} flex items-end justify-end overflow-hidden`}
+                data-main-image
+                data-index={index}
+                id={`main-${slug}`}
+              >
+                <img src={url} alt={alt} class="absolute z-0 opacity-50" />
+              </div>
+              <div
+                  class="image-info align-right text-theme-black bg-theme-white absolute inline-block h-fit w-auto pt-1 pr-4 pb-1 pl-4 right-0 bottom-0 mb-4"
+                  transition:name={`info-${slug}`}
+                >
+                  Photo from{' '}
+                  <a
+                    target="_blank"
+                    href={images[index].author.profile}
+                    class="hover:text-theme-main"
+                  >
+                    {images[index].author.name}
+                  </a>{' '}
+                  at{' '}
+                  <a
+                    target="_blank"
+                    class="hover:text-theme-main"
+                    href={images[index].src}
+                  >
+                    Unsplash
+                  </a>
+                </div>
+            );
+          })
+        }
+      </div>
     </div>
     <article
       class="hidden-scrollbar w-full overflow-auto p-0"
@@ -68,7 +107,7 @@ const imageList = ImageService.parseImageList(body);
                 src={url}
                 id={slug}
                 alt={alt}
-                data-item-image
+                data-carrousell-image
                 class="cursor-pointer"
               />
             );
@@ -108,6 +147,37 @@ const imageList = ImageService.parseImageList(body);
       }
     }
   }
+
+  div[data-main-image] {
+    position: absolute;
+    transform: translateX(100%);
+    height: 100dvh;
+    width: 100%;
+    min-height: 100dvh;
+    transition: 0.3s;
+
+    &.left {
+      transform: translateX(-100%);
+    }
+    &.right {
+      transform: translateX(100%);
+    }
+    img {
+      min-height: 100%;
+      object-fit: cover;
+      min-width: 100%;
+    }
+    .image-info {
+      opacity: 0;
+    }
+    &.active {
+      transform: translate(0%);
+      z-index: 0;
+      .image-info {
+        opacity: 100;
+      }
+    }
+  }
 </style>
 
 <script>
@@ -127,23 +197,45 @@ const imageList = ImageService.parseImageList(body);
     const [root, collection, category, slug] = pathname.split('/');
 
     if (category === 'lookbooks') {
-      const mainImage = document.getElementById(
-        'lookbook-main-image',
-      ) as HTMLImageElement;
-
-      if (!mainImage)
-        throw new Error("Couldn't find the main image of the page");
-
-      const images = document.querySelectorAll(
-        'img[data-item-image]',
+      const carrouselImages = document.querySelectorAll(
+        'img[data-carrousell-image]',
       ) as NodeListOf<HTMLImageElement>;
+      const mainImages = document.querySelectorAll('div[data-main-image]') as NodeListOf<HTMLElement>;
 
-      if (!images) throw new Error("Couldn't find any images on the page");
+      if (!mainImages)
+        throw new Error("Couldn't find the main image of the page");
+      if (!carrouselImages)
+        throw new Error("Couldn't find any images on the page");
 
-      images.forEach((image) => {
+      carrouselImages.forEach((image) => {
         image.addEventListener('click', (event) => {
           const img = event.currentTarget as HTMLImageElement;
-          mainImage.src = img.src;
+          const mainImage = Array.from(mainImages).find(
+            (node) => node.id === `main-${img.id}`,
+          );
+
+          if (!mainImage) {
+            throw new Error("Error getting the main image");
+            
+          }
+
+          mainImages.forEach((node) => {
+            node.classList.remove('active');
+
+            if (!node.dataset.index || !mainImage.dataset.index) {
+              throw new Error("Error getting an image");
+              
+            }
+
+            node.classList.add(
+              node?.dataset.index < mainImage.dataset.index ? 'left' : 'right',
+            );
+            node.classList.remove(
+              node.dataset.index > mainImage.dataset.index ? 'left' : 'right',
+            );
+          });
+
+          mainImage?.classList.add('active');
         });
       });
     }

@@ -5,7 +5,7 @@ export default class CultureService {
     return items.filter((item) => {
       const [postCategory] = item.slug.split('/');
 
-      if (category) {
+      if (category && category !== 'all') {
         return postCategory === category;
       }
 

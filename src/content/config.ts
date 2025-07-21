@@ -1,4 +1,5 @@
 import { defineCollection, z } from 'astro:content';
+import { object } from 'astro:schema';
 
 const cultureCollection = defineCollection({
   schema: z.object({
@@ -6,6 +7,7 @@ const cultureCollection = defineCollection({
     subtitle: z.string(),
     mainImage: z.string(),
     date: z.string(),
+    images: z.any(),
   }),
 });
 

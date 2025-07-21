@@ -11,6 +11,7 @@ import { getCollection } from 'astro:content';
 
 // Consts
 import { ROUTES } from '~/constants/Routes';
+import { CULTURE_PAGES } from '~/constants/Culture';
 
 // Types
 import type { RouteType } from '~/types/Routes';
@@ -35,25 +36,19 @@ const posts = CultureService.getItems(postsCollection, category);
     <div
       class="font-anton flex h-24 w-full justify-end gap-4 p-4 text-5xl font-normal"
     >
-      <Link
-        href={ROUTES.CULTURE}
-        class="text-5xl"
-        class:list={{
-          'text-theme-main': pathname === ROUTES.CULTURE,
-        }}>[All]</Link
-      >
-      <Link
-        href={ROUTES.LOOKBOOKS}
-        class:list={{
-          'text-theme-main': pathname === ROUTES.LOOKBOOKS,
-        }}>[Lookbooks]</Link
-      >
-      <Link
-        href={ROUTES.POSTS}
-        class:list={{
-          'text-theme-main': pathname === ROUTES.POSTS,
-        }}>[Posts]</Link
-      >
+      {
+        CULTURE_PAGES.map((page) => (
+          <Link
+            href={page.href}
+            class="text-5xl"
+            class:list={{
+              'text-theme-main': pathname === page.href,
+            }}
+          >
+            [{page.name}]
+          </Link>
+        ))
+      }
     </div>
     <div class="hidden-scrollbar flex flex-wrap" id="scroll-section">
       {
