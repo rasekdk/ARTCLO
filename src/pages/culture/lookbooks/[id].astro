@@ -134,8 +134,8 @@ const imageList = ImageService.parseImageList(body);
             const { url, slug, alt } = image;
 
             return (
-              <img
-                src={url}
+              <Image
+                src={importedImages[url]()}
                 id={slug}
                 alt={alt}
                 data-carrousell-image
