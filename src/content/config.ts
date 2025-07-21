@@ -7,7 +7,7 @@ const cultureCollection = defineCollection({
     subtitle: z.string(),
     mainImage: z.string(),
     date: z.string(),
-    images: z.any(),
+    images: z.any().optional(),
   }),
 });
 
