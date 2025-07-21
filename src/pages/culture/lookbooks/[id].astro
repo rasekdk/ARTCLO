@@ -1,6 +1,8 @@
 ---
 // Dependencies
 import { getCollection, render } from 'astro:content';
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
 
 // Services
 import ImageService from '~/services/ImageService';
@@ -32,6 +34,12 @@ const {
   data: { images },
 } = post;
 
+const importedImages = import.meta.glob<{ default: ImageMetadata }>(
+  `/src/assets/images/culture/lookbooks/*.{jpeg,jpg,png,gif,webp}`,
+);
+
+console.log(importedImages);
+
 const imageList = ImageService.parseImageList(body);
 ---
 
@@ -57,6 +65,10 @@ const imageList = ImageService.parseImageList(body);
               imageData?.src && authorData?.name && authorData?.profile,
             );
 
+            console.log(url);
+
+            console.log(importedImages[url]);
+
             return (
               <>
                 <div
@@ -68,7 +80,11 @@ const imageList = ImageService.parseImageList(body);
                   data-index={index}
                   id={`main-${slug}`}
                 >
-                  <img src={url} alt={alt} class="opacity-50" />
+                  <Image
+                    src={importedImages[url]()}
+                    alt={alt}
+                    class="opacity-50"
+                  />
                 </div>
 
                 {showInfo && (
