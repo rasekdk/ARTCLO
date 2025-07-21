@@ -3,6 +3,9 @@
 import { getCollection, render } from 'astro:content';
 import { Image } from 'astro:assets';
 
+// Consts
+import { CULTURE_CATEGORY } from '~/constants/Culture';
+
 // Layout
 import Layout from '~/layouts/Layout.astro';
 
@@ -13,7 +16,11 @@ import Main from '~/section/Main.astro';
 import Button from '~/atoms/Button.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('culture');
+  const posts = await getCollection('culture', ({ slug }) => {
+    const [category] = slug.split('/');
+
+    return category === CULTURE_CATEGORY.POSTS;
+  });
   return posts.map((post) => {
     const [category, slug] = post.slug.split('/');
 

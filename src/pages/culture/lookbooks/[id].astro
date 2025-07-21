@@ -4,6 +4,9 @@ import { getCollection, render } from 'astro:content';
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
 
+// Consts
+import { CULTURE_CATEGORY } from '~/constants/Culture';
+
 // Services
 import ImageService from '~/services/ImageService';
 
@@ -17,7 +20,11 @@ import Main from '~/section/Main.astro';
 import Button from '~/atoms/Button.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('culture');
+  const posts = await getCollection('culture', ({ slug }) => {
+    const [category, post] = slug.split('/');
+
+    return category === CULTURE_CATEGORY.LOOKBOOKS;
+  });
   return posts.map((post) => {
     const [category, slug] = post.slug.split('/');
 
