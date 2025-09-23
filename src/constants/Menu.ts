@@ -11,11 +11,11 @@ export const MENU_ITEMS = [
     label: 'Clothing',
     url: ROUTES.CLOTHING,
   },
-  {
-    id: 'footwear',
-    label: 'Footwear',
-    url: ROUTES.FOOTWEAR,
-  },
+  // {
+  //   id: 'footwear',
+  //   label: 'Footwear',
+  //   url: ROUTES.FOOTWEAR,
+  // },
   {
     id: 'culture',
     label: 'Culture',
