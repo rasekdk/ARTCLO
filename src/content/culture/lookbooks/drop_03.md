@@ -4,59 +4,68 @@ subtitle: Asphalt rituals
 mainImage: /src/assets/images/culture/lookbooks/drop_03_00.webp
 date: 25-03-2025
 images:
-  00:
-    src: https://unsplash.com/photos/man-in-black-hoodie-and-brown-pants-standing-beside-red-and-white-box-ItauXzunOeE
+  - src: /src/assets/images/culture/lookbooks/drop_03_00.webp
+    alt: Person in a dark coat and loose pants walking down a busy city street.
     author:
+      src: https://unsplash.com/photos/ItauXzunOeE
       name: Jon Tyson
       profile: https://unsplash.com/@jontyson
-  01:
-    src: https://unsplash.com/photos/a-man-riding-an-escalator-down-a-street-DgAnuZNd5bs
+  - src: /src/assets/images/culture/lookbooks/drop_03_01.webp
+    alt:
+      Woman with long hair and jeans riding an escalator at night in an urban
+      setting.
     author:
+      src: https://unsplash.com/photos/DgAnuZNd5bs
       name: Darwin Boaventura
       profile: https://unsplash.com/@darwinboaventura
-  02:
-    src: https://unsplash.com/photos/man-in-gray-hoodie-sitting-on-train-seat-5nvGwjoOa7U
+  - src: /src/assets/images/culture/lookbooks/drop_03_02.webp
+    alt: Man in a cap and glasses sitting on a bus, looking out the window.
     author:
+      src: https://unsplash.com/photos/5nvGwjoOa7U
       name: Alan W
-      profile: https://unsplash.com/photos/man-in-gray-hoodie-sitting-on-train-seat-5nvGwjoOa7U
-  03:
-    src: https://unsplash.com/photos/woman-with-laptop-on-lap-g6iqHOBetx8
+      profile: https://unsplash.com/@alanw
+  - src: /src/assets/images/culture/lookbooks/drop_03_03.webp
+    alt: Woman sitting on a low wall at night, using a laptop under dim light.
     author:
+      src: https://unsplash.com/photos/g6iqHOBetx8
       name: Richard Ludwig
       profile: https://unsplash.com/@_king_louie_
-  04:
-    src: https://unsplash.com/photos/man-in-black-jacket-and-black-knit-cap-standing-in-front-of-store-during-daytime-VDL2YZzKVLg
+  - src: /src/assets/images/culture/lookbooks/drop_03_04.webp
+    alt:
+      Person with gray hair, wearing a cap and carrying a bag, walking down a
+      city sidewalk.
     author:
+      src: https://unsplash.com/photos/VDL2YZzKVLg
       name: Jonathan Cooper
       profile: https://unsplash.com/@theshuttervision
-  05:
-    src: https://unsplash.com/photos/man-in-black-jacket-and-pants-pQI3MH59s8k
+  - src: /src/assets/images/culture/lookbooks/drop_03_05.webp
+    alt:
+      Man in a flat cap and jacket walking through an indoor market with holiday
+      lights.
     author:
+      src: https://unsplash.com/photos/pQI3MH59s8k
       name: Mathias Reding
       profile: https://unsplash.com/@matreding
-  06:
-    src: https://unsplash.com/photos/man-in-black-jacket-sitting-on-blue-bench-slaRziEEj2Y
+  - src: /src/assets/images/culture/lookbooks/drop_03_06.webp
+    alt:
+      Passenger in a striped beanie and mask sitting on a nearly empty train,
+      resting with arms crossed.
     author:
+      src: https://unsplash.com/photos/slaRziEEj2Y
       name: Moritz Karst
       profile: https://unsplash.com/@mobrigado
-  07:
-    src: https://unsplash.com/photos/a-man-walking-down-a-street-with-a-backpack-w2aVcNE0FQE
+  - src: /src/assets/images/culture/lookbooks/drop_03_07.webp
+    alt: Man in a tan vest and dark pants walking on a rainy city street.
     author:
+      src: https://unsplash.com/photos/w2aVcNE0FQE
       name: Quentin BASNIER
       profile: https://unsplash.com/@schoolbaasq
-  08:
-    src: https://unsplash.com/photos/man-sitting-on-bench--7eS5YLZ88M
+  - src: /src/assets/images/culture/lookbooks/drop_03_08.webp
+    alt:
+      Man sitting on a bench at a train station platform in Japan, with posters
+      and vending machines behind him.
     author:
+      src: https://unsplash.com/photos/-7eS5YLZ88M
       name: Naitian Wang
       profile: https://unsplash.com/@tonywang7
 ---
-
-![Person in a yellow rain jacket walking down stairs holding yellow balloons in an old building](/src/assets/images/culture/lookbooks/drop_03_00.webp)
-![Figure with a yellow rain jacket walking up a dim stairwell with bright light coming through a large window](/src/assets/images/culture/lookbooks/drop_03_01.webp)
-![Person in a yellow rain jacket standing in front of a barred window, holding yellow balloons](/src/assets/images/culture/lookbooks/drop_03_02.webp)
-![Top-down view of someone descending a spiral staircase with yellow balloons](/src/assets/images/culture/lookbooks/drop_03_03.webp)
-![Man walking down the street wearing a yellow jacket and carrying an orange bag, lit by sharp shadows](/src/assets/images/culture/lookbooks/drop_03_04.webp)
-![Back view of a person in an oversized black shirt with a large yellow and red “V” graphic](/src/assets/images/culture/lookbooks/drop_03_05.webp)
-![Side view of someone wearing a black outfit with a dripping yellow-red “V” print, standing against a dark background](/src/assets/images/culture/lookbooks/drop_03_06.webp)
-![Man in a black hat and oversized shirt with a big yellow smiley face, flashing a peace sign](/src/assets/images/culture/lookbooks/drop_03_07.webp)
-![Portrait of a man pointing toward the camera, wearing a black and yellow jacket, standing in front of poster-covered walls](/src/assets/images/culture/lookbooks/drop_03_08.webp)

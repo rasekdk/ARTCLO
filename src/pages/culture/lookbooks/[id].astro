@@ -37,14 +37,12 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const {
-  body,
-  data: { images },
+  data: { images: imageList },
 } = post;
 
 const importedImages = import.meta.glob<{ default: ImageMetadata }>(
   `/src/assets/images/culture/lookbooks/*.{jpeg,jpg,png,gif,webp}`,
 );
-const imageList = ImageService.parseImageList(body);
 ---
 
 <Layout asideScroll={true}>
@@ -57,64 +55,72 @@ const imageList = ImageService.parseImageList(body);
         class="relative z-0 flex min-h-full w-full max-w-full min-w-full flex-row flex-nowrap overflow-hidden object-cover"
       >
         {
-          imageList.map((image, index) => {
-            const { url, slug, alt } = image;
-            const imageData = images?.[index];
-            const authorData = imageData?.author;
-            const showInfo = Boolean(
-              imageData?.src && authorData?.name && authorData?.profile,
-            );
+          imageList &&
+            imageList.map(
+              (
+                image: {
+                  src: string;
+                  alt: string;
+                  author: { name: string; profile: string; src: string };
+                },
+                index: number,
+              ) => {
+                const { src, alt, author: authorData } = image;
+                const showInfo = Boolean(
+                  authorData?.name && authorData?.profile && authorData?.src,
+                );
 
-            return (
-              <>
-                <div
-                  class="relative flex items-end justify-end overflow-hidden"
-                  class:list={{
-                    active: index === 0,
-                  }}
-                  data-main-image
-                  data-index={index}
-                  id={`main-${slug}`}
-                  transition:name={
-                    index === 0 ? `culture-image-${post.slug}` : ''
-                  }
-                >
-                  <Image
-                    src={importedImages[url]()}
-                    alt={alt}
-                    class="opacity-50"
-                  />
-                </div>
+                return (
+                  <>
+                    <div
+                      class="relative flex items-end justify-end overflow-hidden"
+                      class:list={{
+                        active: index === 0,
+                      }}
+                      data-main-image
+                      data-index={index}
+                      id={`main-${index}`}
+                      transition:name={
+                        index === 0 ? `culture-image-${post.slug}` : ''
+                      }
+                    >
+                      <Image
+                        src={importedImages[src]()}
+                        alt={alt}
+                        class="opacity-50"
+                      />
+                    </div>
 
-                {showInfo && (
-                  <div
-                    class="image-info align-right text-theme-black bg-theme-white absolute right-0 bottom-0 z-10 mb-4 inline-block h-fit w-auto pt-1 pr-4 pb-1 pl-4"
-                    data-info-main-image={index}
-                    class:list={{
-                      active: index === 0,
-                    }}
-                  >
-                    Photo from{' '}
-                    <a
-                      target="_blank"
-                      href={authorData.profile}
-                      class="hover:text-theme-main"
-                    >
-                      {authorData.name}
-                    </a>{' '}
-                    at{' '}
-                    <a
-                      target="_blank"
-                      class="hover:text-theme-main"
-                      href={imageData.src}
-                    >
-                      Unsplash
-                    </a>
-                  </div>
-                )}
-              </>
-            );
-          })
+                    {showInfo && (
+                      <div
+                        class="image-info align-right text-theme-black bg-theme-white absolute right-0 bottom-0 z-10 mb-4 inline-block h-fit w-auto pt-1 pr-4 pb-1 pl-4"
+                        data-info-main-image={index}
+                        class:list={{
+                          active: index === 0,
+                        }}
+                      >
+                        Photo from{' '}
+                        <a
+                          target="_blank"
+                          href={authorData.profile}
+                          class="hover:text-theme-main"
+                        >
+                          {authorData.name}
+                        </a>{' '}
+                        at{' '}
+                        <a
+                          target="_blank"
+                          class="hover:text-theme-main"
+                          href={authorData.src}
+                        >
+                          Unsplash
+                        </a>
+                      </div>
+                    )}
+                  </>
+                );
+              },
+            )
         }) }
       </div>
     </div>
@@ -129,19 +135,29 @@ const imageList = ImageService.parseImageList(body);
       <p class="text-theme-main mb-8">[{post.data.date}]</p>
       <div id="content-wrapper">
         {
-          imageList.map((image) => {
-            const { url, slug, alt } = image;
+          imageList &&
+            imageList.map(
+              (
+                image: {
+                  src: string;
+                  alt: string;
+                  author: { name: string; profile: string; src: string };
+                },
+                index: number,
+              ) => {
+                const { src, alt } = image;
 
-            return (
-              <Image
-                src={importedImages[url]()}
-                id={slug}
-                alt={alt}
-                data-carrousell-image
-                class="cursor-pointer"
-              />
-            );
-          })
+                return (
+                  <Image
+                    src={importedImages[src]()}
+                    id={index.toString()}
+                    alt={alt}
+                    data-carrousell-image
+                    class="cursor-pointer"
+                  />
+                );
+              },
+            )
         }
       </div>
     </article>
@@ -210,8 +226,10 @@ const imageList = ImageService.parseImageList(body);
   div[data-info-main-image] {
     opacity: 0;
     transition: 0.3s ease-in-out;
+    pointer-events: none;
     &.active {
       opacity: 100%;
+      pointer-events: all;
     }
   }
 </style>
