@@ -13,6 +13,7 @@ const {
   href,
   target = '_self',
   rel = 'noopener noreferrer',
+  disabled = false,
   ...props
 } = Astro.props as LinkPropsType;
 ---
@@ -25,6 +26,8 @@ const {
     [`${parentClasses}`]: Boolean(parentClasses),
     [casing]: Boolean(casing),
     [`text-theme-${isActive ? 'main' : color}`]: Boolean(isActive),
+    ['decoration-theme-main pointer-events-none line-through decoration-7 opacity-50 select-none']:
+      Boolean(disabled),
   }}
 >
   <slot />

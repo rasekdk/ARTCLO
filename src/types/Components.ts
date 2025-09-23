@@ -19,6 +19,7 @@ export type LinkPropsType = HTMLAttributes<'a'> & {
   color?: ColorsType;
   isActive?: boolean;
   onClick?: (event: MouseEvent) => void;
+  disabled?: boolean;
 };
 
 export type CartScrollType = {

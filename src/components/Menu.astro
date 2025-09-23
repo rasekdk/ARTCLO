@@ -29,7 +29,7 @@ const { class: className } = Astro.props;
 
   <nav>
     {
-      MENU_ITEMS.map(({ url, id, label }) => {
+      MENU_ITEMS.map(({ url, id, label, disabled }) => {
         const isActive = pathname === url || pathname.includes(url);
         return (
           <Link
@@ -40,6 +40,7 @@ const { class: className } = Astro.props;
                 ? 'text-theme-main text-[clamp(3rem,23cqw,6.5rem)]'
                 : 'text-theme-white text-[clamp(2rem,22cqw,6rem)]'
             }`}
+            disabled={disabled}
             aria-current={isActive ? 'page' : undefined}
             data-astro-prefetch="hover"
           >
