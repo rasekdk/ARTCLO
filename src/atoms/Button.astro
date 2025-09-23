@@ -23,3 +23,16 @@ const { id, class: className } = Astro.props;
     }
   }
 </style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const history = window.history;
+    const backButton = document.getElementById('backButton');
+
+    if (backButton) {
+      backButton.addEventListener('click', () => {
+        history.back();
+      });
+    }
+  });
+</script>

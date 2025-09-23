@@ -46,11 +46,7 @@ if (!importedImages[post.data.mainImage])
 <Layout asideScroll={true}>
   <Main class="flex-row gap-4">
     <div class="bg-theme-black relative min-h-full min-w-1/2">
-      <Button
-        navigate={post.collection}
-        class="absolute top-0 right-0 z-10"
-        id="backButton"
-      >
+      <Button class="absolute top-0 right-0 z-10" id="backButton">
         [Back]
       </Button>
       <Image
@@ -120,14 +116,3 @@ if (!importedImages[post.data.mainImage])
     }
   }
 </style>
-
-<script>
-  document.addEventListener('astro:page-load', () => {
-    const history = window.history;
-    const backButton = document.getElementById('backButton');
-
-    backButton?.addEventListener('click', (event) => {
-      history.back();
-    });
-  });
-</script>

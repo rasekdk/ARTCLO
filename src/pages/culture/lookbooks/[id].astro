@@ -218,17 +218,6 @@ const imageList = ImageService.parseImageList(body);
 
 <script>
   document.addEventListener('astro:page-load', () => {
-    const history = window.history;
-    const backButton = document.getElementById('backButton');
-
-    backButton?.addEventListener('click', (event) => {
-      history.back();
-    });
-  });
-</script>
-
-<script>
-  document.addEventListener('astro:page-load', () => {
     const { pathname } = window.location;
     const [root, collection, category, slug] = pathname.split('/');
 
