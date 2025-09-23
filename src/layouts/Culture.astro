@@ -65,20 +65,20 @@ const posts = CultureService.getItems(postsCollection, category);
           return (
             <a
               href={`/${collection}/${slug}`}
-              class={`bg-theme-black relative z-1 flex aspect-4/3 w-1/3 flex-col justify-center overflow-hidden bg-cover bg-center text-center text-white`}
+              class={`bg-theme-black group relative z-1 flex aspect-4/3 w-1/3 flex-col justify-center overflow-hidden bg-cover bg-center text-center text-white`}
               transition:name={`culture-image-${slug}`}
             >
-              <span class="font-anton absolute top-0 left-0 text-4xl font-normal uppercase">
+              <span class="font-anton absolute top-1 left-1 text-4xl font-normal uppercase">
                 [{postCategory}]
               </span>
-              <h3 class="font-oswald text-4xl font-normal uppercase">
+              <h3 class="font-oswald text-4xl font-normal uppercase transition-all group-hover:scale-120">
                 {data.title}
               </h3>
               <h4 class="font-oswald text-lg font-normal">{data.subtitle}</h4>
               <Image
                 src={importedImages[data.mainImage]()}
                 alt={data.subtitle}
-                class="bg-theme-black pointer-events-none absolute -z-1 min-h-full min-w-full opacity-50"
+                class="bg-theme-black pointer-events-none absolute -z-1 min-h-full min-w-full opacity-50 transition-all group-hover:scale-120"
               />
             </a>
           );
