@@ -1,0 +1,40 @@
+---
+// Assets
+import { Image } from 'astro:assets';
+
+// Props
+const {
+  href,
+  slug,
+  category,
+  title,
+  subtitle,
+  image,
+  alt,
+  class: className,
+} = Astro.props;
+---
+
+<a
+  href={href}
+  class={`bg-theme-black group max-w relative min-w-lg grow z-1 flex flex-col justify-center overflow-hidden bg-cover bg-center text-center text-white`}
+  class:list={{
+    [className]: Boolean(className),
+  }}
+  transition:name={slug}
+>
+  <span class="font-anton absolute top-1 left-1 text-4xl font-normal uppercase">
+    [{category}]
+  </span>
+  <h3
+    class="font-oswald text-4xl font-normal uppercase transition-all group-hover:scale-120"
+  >
+    {title}
+  </h3>
+  <h4 class="font-oswald text-lg font-normal">{subtitle}</h4>
+  <Image
+    src={image}
+    alt={alt}
+    class="bg-theme-black pointer-events-none absolute -z-1 min-h-full min-w-full opacity-50 transition-all group-hover:scale-120"
+  />
+</a>
