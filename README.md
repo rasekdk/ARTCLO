@@ -1,50 +1,60 @@
 # ARTCLO
 
-This repository hosts a small website built with **Astro**, Preact and TailwindCSS. The aim is to provide a base for experimenting with a fictitious store called **Art & Clothing**.
+This repository hosts a small website built with **Astro** and TailwindCSS.
 
-See `CONTRIBUTING.md` for the English-only policy.
+The aim is to provide a base for experimenting with a fictitious store called
+**ARTCLO**, Art & Clothing.
 
-It includes several sections (Collection, Clothing, Footwear, Culture) and reusable components written in Astro and Preact. Feel free to use it as inspiration or as the starting point for your own catalogue.
+It includes several sections (Collection, Clothing, Footwear, Culture) and
+reusable components written in Astro.
+
+Feel free to use it as inspiration.
 
 ## Project structure
 
 ```text
 /
-├── public/
+├── public/             # Static assets (fonts, images, svg)
 ├── src/
-│   ├── pages/
-│   ├── layouts/
-│   ├── components/
-│   └── ...
+│   ├── assets/         # Images, icons, etc.
+│   ├── atoms/          # Small reusable UI pieces
+│   ├── components/     # Larger components
+│   ├── constants/      # Static values
+│   ├── content/        # Markdown/MDX content
+│   ├── layouts/        # Layout wrappers
+│   ├── pages/          # Astro/MD pages → routes
+│   ├── sections/       # Page-specific sections
+│   ├── services/       # API / utils
+│   ├── styles/         # Global CSS & Tailwind config
+│   └── types/          # TypeScript types
+├── configuration files
+├── README.md
+├── images-credits.md
 └── package.json
+
 ```
 
 ## Usage
 
-1. Install the dependencies:
-   ```bash
-   npm install
-   ```
-2. Start the development server:
-   ```bash
-   npm run dev
-   ```
-   The project will be available at `http://localhost:4321`.
-3. Generate the production build:
-   ```bash
-   npm run build
-   ```
-4. Preview the generated site before deploying:
-   ```bash
-   npm run preview
-   ```
+All commands are run from the project root:
+
+| Command           | Action                                            |
+| ----------------- | ------------------------------------------------- |
+| `npm install`     | Install dependencies                              |
+| `npm run dev`     | Start local dev server at `http://localhost:4321` |
+| `npm run build`   | Build the production site into `./dist/`          |
+| `npm run preview` | Preview the build locally before deploying        |
 
 ## Deployment
 
-After running `npm run build`, the `dist/` folder will contain the final files. You can upload them to any static hosting service (Netlify, Vercel, GitHub Pages, etc.). If you need a specific adapter you can add it with:
+After running `npm run build`, the `dist/` folder will contain the final files.
 
-```bash
-npm run astro add <adapter>
-```
+You can deploy them to any static hosting provider.
 
-Check the [official Astro documentation](https://docs.astro.build) for more details.
+Check the [official Astro documentation](https://docs.astro.build) for more
+details.
+
+## Credits
+
+All images are from [Unsplash](https://unsplash.com) Full credits are listed in
+`images-credits.md`
